@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../Common/')
+sys.path.append('C:/Users/kfullerton/Documents/Repos/virtual_sdcs_docs')
 
 from library_qlabs import QuanserInteractiveLabs
 from library_qlabs_qcar import QLabsQCar
@@ -60,8 +60,8 @@ rotation_z = 0
 
 # destroy all spawned actors to reset the scene
 print("Deleting current spawned actors...")
-qlabs.destroySpawnedActor(QLabsQCar().ID_QCAR, 0)
-qlabs.destroySpawnedActor(QLabsBasicShape().ID_BASIC_SHAPE, 0)
+qlabs.destroy_spawned_actor(QLabsQCar().ID_QCAR, 0)
+qlabs.destroy_spawned_actor(QLabsBasicShape().ID_BASIC_SHAPE, 0)
 
 time.sleep(1)
 
@@ -89,8 +89,8 @@ config = 0
 
 #qlab_reference_indicator().spawn(qlabs, device_num, x, y, z, roll, pitch, yaw, sx, sy, sz, config, True)
 QLabsQCar().spawn(qlabs, 0, [16.412, 0.06, 0.005], [0, 0, math.pi/2])
-QLabsBasicShape().spawnAndParentWithRelativeTransform(qlabs, 0, [1.15, 0, 1.8], [0, 0, 0], [.65, .65, .1], QLabsBasicShape().SHAPE_SPHERE, QLabsQCar().ID_QCAR, parentDeviceNumber=0, parentComponent=1, waitForConfirmation=True)
-QLabsBasicShape().setMaterialProperties(qlabs, 0, [0.0,.4,0.0], roughness=0.4, metallic=False, waitForConfirmation=True)
+QLabsBasicShape().spawn_and_parent_with_relative_transform(qlabs, 0, [1.15, 0, 1.8], [0, 0, 0], [.65, .65, .1], QLabsBasicShape().SHAPE_SPHERE, QLabsQCar().ID_QCAR, parentDeviceNumber=0, parentComponent=1, waitForConfirmation=True)
+QLabsBasicShape().set_material_properties(qlabs, 0, [0.0,.4,0.0], roughness=0.4, metallic=False, waitForConfirmation=True)
 
 
 QLabsQCar().possess(qlabs, 0, QLabsQCar().CAMERA_TRAILING)
@@ -211,13 +211,13 @@ while not done:
     
     #c = qlab_qcar().set_transform_and_request_state(qlabs, device_num, location_x, location_y, 0.0, 0.0, 0.0, rotation_z, enable_dynamics, headlights, left_turn, right_turn, brake, honk, False)
     #c = qlab_reference_indicator().set_transform_and_color(qlabs, 0, location_x, location_y, z, roll, pitch, yaw, sx, sy, sz, button_A, button_B, button_X, False)
-    c = QLabsQCar().setVelocityAndRequestState(qlabs, device_num, ((trigger_left + 1)*-1 + (trigger_right + 1)*1)*speed_scale, left_x*0.3, headlights, left_turn, right_turn, brake, honk, True)
+    c = QLabsQCar().set_velocity_and_request_state(qlabs, device_num, ((trigger_left + 1)*-1 + (trigger_right + 1)*1)*speed_scale, left_x*0.3, headlights, left_turn, right_turn, brake, honk, True)
        
     if c == False:
         done = True
         
         
-    success, image_csi = QLabsQCar().getCameraData(qlabs, device_num, QLabsQCar().CAMERA_CSI_FRONT)
+    success, image_csi = QLabsQCar().get_camera_data(qlabs, device_num, QLabsQCar().CAMERA_CSI_FRONT)
     
     if success == True:
         cv2.imshow('csi_stream', image_csi)
@@ -248,7 +248,7 @@ while not done:
     # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
-    # Limit to 20 frames per second.
+    # Limit to 30 frames per second.
     clock.tick(30)
 
 # Close the window and quit.

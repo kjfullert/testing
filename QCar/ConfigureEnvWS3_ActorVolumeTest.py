@@ -28,7 +28,7 @@ qlabs.open("tcpip://localhost:18000")
 
 # destroy all spawned actors to reset the scene
 print("Deleting current spawned actors...")
-qlabs.destroyAllSpawnedActors()
+qlabs.destroy_all_spawned_actors()
 
 
 print("Spawning new actors...")
@@ -51,8 +51,8 @@ for d in range(4):
     for v in range(16):
         for h in range(16):
             QLabsBasicShape().spawn(qlabs, shape_index, [-18 + h*0.5 + (random.random() - 0.5)*0.1, 33 - v*0.5 - (random.random() - 0.5)*0.1, 4], [math.pi/4,0,0], [0.25, 0.25, 0.25], QLabsBasicShape().SHAPE_SPHERE, False)
-            QLabsBasicShape().setMaterialProperties(qlabs, shape_index, [0.7, 0, 0], 0.0, metallic=False, waitForConfirmation=False)
-            QLabsBasicShape().setPhysicsProperties(qlabs, shape_index, 1, 0.1, 1, True, False)
+            QLabsBasicShape().set_material_properties(qlabs, shape_index, [0.7, 0, 0], 0.0, metallic=False, waitForConfirmation=False)
+            QLabsBasicShape().set_physics_properties(qlabs, shape_index, 1, 0.1, 1, True, False)
             
             shape_index = shape_index + 1
         time.sleep(0.1)    

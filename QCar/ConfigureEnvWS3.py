@@ -1,5 +1,6 @@
+from cmath import pi
 import sys
-sys.path.append('../Common/')
+sys.path.append('C:/Users/kfullerton/Documents/Repos/virtual_sdcs_docs')
 
 from library_qlabs import QuanserInteractiveLabs
 from library_qlabs_free_camera import QLabsFreeCamera
@@ -12,6 +13,7 @@ from library_qlabs_silhouette_person import QLabsSilhouettePerson
 from library_qlabs_qcar import QLabsQCar
 from library_qlabs_spline_line import QLabsSplineLine
 from library_qlabs_trafficlight_single import QLabsTrafficLightSingle
+from library_qlabs_basic_shape import QLabsBasicShape
 
 
 import time
@@ -26,14 +28,19 @@ qlabs.open("tcpip://localhost:18000")
 
 # destroy all spawned actors to reset the scene
 print("Deleting current spawned actors...")
-qlabs.destroyAllSpawnedActors()
+qlabs.destroy_all_spawned_actors()
 time.sleep(2)
 
 print("Spawning new actors...")
 
+QLabsFreeCamera().spawn(qlabs, 0, [15.896, -3.516, 4.056], [0, 0.235, 1.538])
+QLabsFreeCamera().possess(qlabs, 0)
+
+QLabsBasicShape().spawn_degrees(qlabs, 0, [15.709, 22.257, 1.005], [0,0,0], [3,1,2], configuration=QLabsBasicShape().SHAPE_CUBE, waitForConfirmation=True)
+QLabsBasicShape().set_material_properties(qlabs, 0, [10,0.37,0.26], roughness=0, metallic=False, waitForConfirmation=True)
 
 #qlab_qcar().spawn(qlabs, 0, [16.677, 0.0, 0.005], [0, 0, -1.57])
-QLabsQCar().spawnDegrees(qlabs, 0, [16.677, 0.0, 0.005], [0, 0, 90])
+QLabsQCar().spawn_degrees(qlabs, 0, [16.677, 0.0, 0.005], [0, 0, 90])
 
 
 # add a crosswalk
@@ -67,18 +74,21 @@ QLabsRoundaboutSign().spawn(qlabs, 2, [0.037, 40.675, 0], [0, 0, 2.5], [1.0, 1.0
 QLabsYieldSign().spawn(qlabs, 0, [-3.879, -10.817, 0.2], [0, 0, -math.pi], [1.0, 1.0, 1.0], False)
 
 # traffic light
-QLabsTrafficLightSingle().spawnDegrees(qlabs, 0, [18.8, 17.8, 2.024], [0, 0, -90], [1.0, 1.0, 1.0], False)
-QLabsTrafficLightSingle().setState(qlabs, 0, QLabsTrafficLightSingle().STATE_GREEN)
+QLabsTrafficLightSingle().spawn_degrees(qlabs, 0, [18.8, 17.8, 2.024], [0, 0, -90], [1.0, 1.0, 1.0], False)
+QLabsTrafficLightSingle().set_state(qlabs, 0, QLabsTrafficLightSingle().STATE_GREEN)
 
 # pedestrian
-QLabsSilhouettePerson().spawnDegrees(qlabs, 0, [11.351, 18.233, 0.215], [0, 0, 0], [1.0, 1.0, 1.0], 0, False)
+QLabsSilhouettePerson().spawn_degrees(qlabs, 0, [11.351, 18.233, 0.215], [0, 0, 0], [1.0, 1.0, 1.0], 0, False)
+QLabsSilhouettePerson().spawn_degrees(qlabs, 1, [18.385, 4.348, 0.2], [0, 0, 180], [1.0, 1.0, 1.0], 4, False)
 
 time.sleep(2)
-QLabsTrafficLightSingle().setState(qlabs, 0, QLabsTrafficLightSingle().STATE_YELLOW)
+QLabsTrafficLightSingle().set_state(qlabs, 0, QLabsTrafficLightSingle().STATE_YELLOW)
 
 time.sleep(1)
-QLabsTrafficLightSingle().setState(qlabs, 0, QLabsTrafficLightSingle().STATE_RED)
-QLabsSilhouettePerson().moveTo(qlabs, 0, [19.72, 19.033, 0.2], 1.0, waitForConfirmation=True)
+QLabsTrafficLightSingle().set_state(qlabs, 0, QLabsTrafficLightSingle().STATE_RED)
+QLabsSilhouettePerson().move_to(qlabs, 0, [19.72, 19.033, 0.2], 1.0, waitForConfirmation=True)
+
+QLabsSilhouettePerson().move_to(qlabs, 1, [-7.696, 4.887, 0.2], 2.0, waitForConfirmation=True)
 
 qlabs.close()
 print("Done!")  

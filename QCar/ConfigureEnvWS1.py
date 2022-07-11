@@ -20,7 +20,7 @@ qlabs.open("tcpip://localhost:18000")
 
 # destroy all spawned actors to reset the scene
 print("Deleting current spawned actors...")
-qlabs.destroyAllSpawnedActors()
+qlabs.destroy_all_spawned_actors()
 time.sleep(2)
 
 print("Spawning new actors...")
@@ -43,7 +43,7 @@ QLabsStopSign().spawn(qlabs, 1, [10.689, 23.636, 0.2], [0, 0, math.pi/2], [1.0, 
 c = QLabsSilhouettePerson().spawn(qlabs, 0, [9.969, 21.139, 0.2], [0, 0, 0], [1.0, 1.0, 1.0], 2)
 
 time.sleep(1)
-c = QLabsSilhouettePerson().moveTo(qlabs, 0, [21.864, -20.986, 0.2], 1)
+c = QLabsSilhouettePerson().move_to(qlabs, 0, [21.864, -20.986, 0.2], 1)
 
 #QLabsQCar().possess(qlabs, 0, QLabsQCar().CAMERA_TRAILING)
 

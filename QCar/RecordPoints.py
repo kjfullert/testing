@@ -61,17 +61,17 @@ refSphereScale = 0.5
 
 # destroy all spawned actors to reset the scene
 print("Deleting current spawned actors...")
-qlabs.destroyAllSpawnedActors()
+qlabs.destroy_all_spawned_actors()
 
 time.sleep(1)
 
 print("Spawning new actors...")
 refSphere = QLabsBasicShape()
 refSphere.spawn(qlabs, 0, currentLocation, [0,0,0], [refSphereScale,refSphereScale,refSphereScale], configuration=refSphere.SHAPE_SPHERE)
-refSphere.setMaterialProperties(qlabs, 0, [1,0,0], roughness=0.4, metallic=False)
+refSphere.set_material_properties(qlabs, 0, [1,0,0], roughness=0.4, metallic=False)
 
 
-QLabsFreeCamera().spawnAndParentWithRelativeTransformDegrees(qlabs, 0, [0,0,10/refSphereScale], [0,89,180], QLabsBasicShape().ID_BASIC_SHAPE, 0, 0)
+QLabsFreeCamera().spawn_and_parent_with_relative_transform_degrees(qlabs, 0, [0,0,10/refSphereScale], [0,89,180], QLabsBasicShape().ID_BASIC_SHAPE, 0, 0)
 QLabsFreeCamera().possess(qlabs, 0)
 
 print("Starting main")
@@ -180,7 +180,7 @@ while not done:
     currentLocation[0] = currentLocation[0] + left_y*speed
     currentLocation[1] = currentLocation[1] + left_x*speed
     
-    c = refSphere.setTransform(qlabs, 0, currentLocation, [0,0,0], [refSphereScale,refSphereScale,refSphereScale])
+    c = refSphere.set_transform(qlabs, 0, currentLocation, [0,0,0], [refSphereScale,refSphereScale,refSphereScale])
       
     if c == False:
         done = True
@@ -200,7 +200,7 @@ while not done:
             refIndex = refIndex - 1
             refList.pop(refIndex-1)
             
-            qlabs.destroySpawnedActor(refSphere.ID_BASIC_SHAPE, refIndex)
+            qlabs.destroy_spawned_actor(refSphere.ID_BASIC_SHAPE, refIndex)
             
             # This is a bug to deal with...
             QLabsFreeCamera().possess(qlabs, 0)

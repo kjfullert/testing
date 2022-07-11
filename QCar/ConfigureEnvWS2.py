@@ -24,7 +24,7 @@ qlabs.open("tcpip://localhost:18000")
 
 # destroy all spawned actors to reset the scene
 print("Deleting current spawned actors...")
-qlabs.destroyAllSpawnedActors()
+qlabs.destroy_all_spawned_actors()
 time.sleep(2)
 
 print("Spawning new actors...")
@@ -79,7 +79,7 @@ QLabsSplineLine().spawn(qlabs, 0, [15.242, 4.406, 0.01], [0, 0, 0], [1, 1, 1], 0
 points = [[0, 0, 0, 4], \
 [0, 15.00, 0, 4]]
 
-QLabsSplineLine().setPoints(qlabs, 0, [0, 0.2, 0], True, points, True)
+QLabsSplineLine().set_points(qlabs, 0, [0, 0.2, 0], True, points, True)
 
 
 
