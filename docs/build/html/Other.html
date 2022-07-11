@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changing the Workspace Name &mdash; Quanser&#39;s Self Driving Car Virtual Studio Documentation 0.1 documentation</title>
+  <title>Python System &amp; Utility Reference &mdash; Quanser&#39;s Self Driving Car Virtual Studio Documentation 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinx_collapse.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python Object Reference" href="Objects/index.html" />
+    <link rel="next" title="Python Actors Reference" href="Objects/index.html" />
     <link rel="prev" title="User Interface" href="User%20Interface.html" /> 
 </head>
 
@@ -48,25 +48,12 @@
 <li class="toctree-l1"><a class="reference internal" href="Getting%20Started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="User%20Interface.html">User Interface</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Changing the Workspace Name</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#spawning-controlling-objects">Spawning &amp; Controlling Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#car">Car</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#driving-cars">Driving Cars</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#crosswalk">Crosswalk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#roundabout-sign">Roundabout Sign</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stop-sign">Stop Sign</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#yield-sign">Yield Sign</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#traffic-cone">Traffic Cone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#traffic-light">Traffic Light</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#basic-shapes-cube-cylinder-sphere">Basic Shapes (Cube/Cylinder/Sphere)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#widgets-cube-cylinder-sphere-autoclave-cage-plastic-bottle-metal-can">Widgets (Cube/Cylinder/Sphere/Autoclave cage/plastic bottle/metal can)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python System &amp; Utility Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changing-the-workspace-name">Changing the Workspace Name</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#attaching-objects">Attaching Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#setting-material-properties">Setting Material Properties</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Objects/index.html">Python Object Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Objects/index.html">Python Actors Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Debugging.html">Debugging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Code%20Style.html">Code Style</a></li>
@@ -86,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Changing the Workspace Name</li>
+      <li>Python System &amp; Utility Reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Other.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -96,55 +83,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p id="other">The following objects are to be used in the SDCS studio in Quanser Interactive Labs.</p>
+  <section id="python-system-utility-reference">
+<span id="other"></span><h1>Python System &amp; Utility Reference<a class="headerlink" href="#python-system-utility-reference" title="Permalink to this headline"></a></h1>
+<p>The following objects are to be used in the SDCS studio in Quanser Interactive Labs.</p>
 <section id="changing-the-workspace-name">
-<h1>Changing the Workspace Name<a class="headerlink" href="#changing-the-workspace-name" title="Permalink to this headline"></a></h1>
+<h2>Changing the Workspace Name<a class="headerlink" href="#changing-the-workspace-name" title="Permalink to this headline"></a></h2>
 <p>To change the workspace name on the QLabs Interface simply run this command with your desired name:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QuanserInteractiveLabs</span><span class="p">()</span><span class="o">.</span><span class="n">set_title_string</span><span class="p">(</span><span class="n">insertTitleStringHere</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="spawning-controlling-objects">
-<h1>Spawning &amp; Controlling Objects<a class="headerlink" href="#spawning-controlling-objects" title="Permalink to this headline"></a></h1>
-<p>There are a pile of different objects that can be spawned in the QCar workspaces.</p>
-<section id="car">
-<h2>Car<a class="headerlink" href="#car" title="Permalink to this headline"></a></h2>
-<section id="driving-cars">
-<h3>Driving Cars<a class="headerlink" href="#driving-cars" title="Permalink to this headline"></a></h3>
-</section>
-</section>
-<section id="crosswalk">
-<h2>Crosswalk<a class="headerlink" href="#crosswalk" title="Permalink to this headline"></a></h2>
-</section>
-<section id="roundabout-sign">
-<h2>Roundabout Sign<a class="headerlink" href="#roundabout-sign" title="Permalink to this headline"></a></h2>
-</section>
-<section id="stop-sign">
-<h2>Stop Sign<a class="headerlink" href="#stop-sign" title="Permalink to this headline"></a></h2>
-</section>
-<section id="yield-sign">
-<h2>Yield Sign<a class="headerlink" href="#yield-sign" title="Permalink to this headline"></a></h2>
-</section>
-<section id="traffic-cone">
-<h2>Traffic Cone<a class="headerlink" href="#traffic-cone" title="Permalink to this headline"></a></h2>
-</section>
-<section id="traffic-light">
-<h2>Traffic Light<a class="headerlink" href="#traffic-light" title="Permalink to this headline"></a></h2>
-</section>
-<section id="basic-shapes-cube-cylinder-sphere">
-<h2>Basic Shapes (Cube/Cylinder/Sphere)<a class="headerlink" href="#basic-shapes-cube-cylinder-sphere" title="Permalink to this headline"></a></h2>
-</section>
-<section id="widgets-cube-cylinder-sphere-autoclave-cage-plastic-bottle-metal-can">
-<h2>Widgets (Cube/Cylinder/Sphere/Autoclave cage/plastic bottle/metal can)<a class="headerlink" href="#widgets-cube-cylinder-sphere-autoclave-cage-plastic-bottle-metal-can" title="Permalink to this headline"></a></h2>
-<p>Widgets work slightly differently then the other objects in the Qlabs workspaces.
-Widgets can’t be modified once created.  They also can’t be deleted individually.</p>
-</section>
 </section>
 <section id="attaching-objects">
 <h1>Attaching Objects<a class="headerlink" href="#attaching-objects" title="Permalink to this headline"></a></h1>
-</section>
-<section id="setting-material-properties">
-<h1>Setting Material Properties<a class="headerlink" href="#setting-material-properties" title="Permalink to this headline"></a></h1>
+<p>..Setting Material Properties</p>
 </section>
 
 
@@ -152,7 +104,7 @@ Widgets can’t be modified once created.  They also can’t be deleted individu
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="User%20Interface.html" class="btn btn-neutral float-left" title="User Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Objects/index.html" class="btn btn-neutral float-right" title="Python Object Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Objects/index.html" class="btn btn-neutral float-right" title="Python Actors Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

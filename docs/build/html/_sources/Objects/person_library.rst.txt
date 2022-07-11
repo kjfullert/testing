@@ -1,16 +1,14 @@
-
+.. _Person_Library:
 
 Person
 ------
-
-.. _Person_Library:
 
 .. _personDescription: 
 
 Description
 ^^^^^^^^^^^
 
-.. _personLibrary:
+.. _personlibrary:
 
 Library
 ^^^^^^^
@@ -34,6 +32,20 @@ Connection Points
 
 Constants
 ^^^^^^^^^
+
+.. _personTutorial:
+
+Tutorial
+^^^^^^^^
+
+.. dropdown:: Example 1
+
+.. dropdown:: Example 2
+
+.. dropdown:: Example 3
+
+**See Also:**
+
 
 
 

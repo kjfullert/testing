@@ -36,20 +36,19 @@ Methods
 Configurations
 ^^^^^^^^^^^^^^
 
-There are no configuration options for the camera device.
+There are no configuration options for the camera actor.
 
 .. _cameraConnect:
 
 Connection Points
 ^^^^^^^^^^^^^^^^^
 
-There are no connection points for the free camera device.
+There are no connection points for the free camera actor.
 
 .. _cameraConstants:
 
 Constants
 ^^^^^^^^^
-
 .. autoattribute:: library_qlabs_free_camera.QLabsFreeCamera.ID_FREE_CAMERA
 .. autoattribute:: library_qlabs_free_camera.QLabsFreeCamera.FCN_FREE_CAMERA_POSSESS
 .. autoattribute:: library_qlabs_free_camera.QLabsFreeCamera.FCN_FREE_CAMERA_POSSESS_ACK

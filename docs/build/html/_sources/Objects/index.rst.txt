@@ -6,12 +6,19 @@
 .. _Objects:
 
 ***********************
-Python Object Reference
+Python Actors Reference
 ***********************
+
+This section documents the different types of actors that you can spawn and control in the QLabs Workspaces.
 
 .. toctree::
    :maxdepth: 1
 
    camera_library
    person_library
+   car_library
+   road_signage
+   widgets
+   basic_shapes
+
 

@@ -47,11 +47,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Getting%20Started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="User%20Interface.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Other.html">Changing the Workspace Name</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Other.html#spawning-controlling-objects">Spawning &amp; Controlling Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Other.html">Python System &amp; Utility Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Other.html#attaching-objects">Attaching Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Other.html#setting-material-properties">Setting Material Properties</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Objects/index.html">Python Object Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Objects/index.html">Python Actors Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Debugging.html">Debugging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Code%20Style.html">Code Style</a></li>
@@ -92,7 +90,7 @@ If you are looking for courseware for using the physical studio please check out
 <h1>Design Philosophy<a class="headerlink" href="#design-philosophy" title="Permalink to this headline"></a></h1>
 <p>The Self-Driving Car Studio’s Virtual Lab has been designed for python script tests.
 Although there are some basic interface options, the current Self-Driving Car Virtual Studio is not designed to be used through the interface alone.
-We therefore highly recommend that you try our simple <a class="reference internal" href="Getting%20Started.html#tutorial"><span class="std std-ref">Tutorial</span></a> to get started with python scripts for the Self-Driving Car Virtual Studio and get used to our libraries and the capabilities of our workspaces.</p>
+We therefore highly recommend that you try our simple <a class="reference internal" href="Objects/widgets.html#tutorial"><span class="std std-ref">Tutorial</span></a> to get started with python scripts for the Self-Driving Car Virtual Studio and get used to our libraries and the capabilities of our workspaces.</p>
 </section>
 <section id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h1>
@@ -130,25 +128,12 @@ See the contribution guide.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Other.html">Changing the Workspace Name</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Other.html#spawning-controlling-objects">Spawning &amp; Controlling Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#car">Car</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Other.html#driving-cars">Driving Cars</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#crosswalk">Crosswalk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#roundabout-sign">Roundabout Sign</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#stop-sign">Stop Sign</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#yield-sign">Yield Sign</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#traffic-cone">Traffic Cone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#traffic-light">Traffic Light</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#basic-shapes-cube-cylinder-sphere">Basic Shapes (Cube/Cylinder/Sphere)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Other.html#widgets-cube-cylinder-sphere-autoclave-cage-plastic-bottle-metal-can">Widgets (Cube/Cylinder/Sphere/Autoclave cage/plastic bottle/metal can)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Other.html">Python System &amp; Utility Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Other.html#changing-the-workspace-name">Changing the Workspace Name</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Other.html#attaching-objects">Attaching Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Other.html#setting-material-properties">Setting Material Properties</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Objects/index.html">Python Object Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="Objects/index.html">Python Actors Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Objects/camera_library.html">Cameras</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Objects/camera_library.html#description">Description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Objects/camera_library.html#cameralibrary">Camera Library</a></li>
@@ -166,6 +151,101 @@ See the contribution guide.</p>
 <li class="toctree-l3"><a class="reference internal" href="Objects/person_library.html#configurations">Configurations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Objects/person_library.html#connection-points">Connection Points</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Objects/person_library.html#constants">Constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/person_library.html#tutorial">Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Objects/car_library.html">Cars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#library">Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#methods">Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#configurations">Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#connection-points">Connection Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#constants">Constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#tutorial">Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/car_library.html#driving-cars">Driving Cars</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Objects/road_signage.html">Road Signage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Objects/road_signage.html#crosswalk">Crosswalk</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#library">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#configurations">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#connection-points">Connection Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#constants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#tutorial">Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/road_signage.html#roundabout-sign">Roundabout Sign</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#roundaboutdescription">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#roundaboutlibrary">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#roundaboutmethods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#roundaboutconfig">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#roundaboutconnect">Connection Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#roundaboutconstants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#roundabouttutorial">Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/road_signage.html#stop-sign">Stop Sign</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#stopsigndescription">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#stopsignlibrary">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#stopsignmethods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#stopsignconfig">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#stopsignconnect">Connection Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#stopsignconstants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#stopsigntutorial">Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/road_signage.html#yield-sign">Yield Sign</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#yieldsigndescription">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#yieldsignlibrary">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#yieldsignmethods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#yieldsignconfig">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#yieldsignconnect">Connection Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#yieldsignconstants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#yieldsigntutorial">Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/road_signage.html#traffic-cone">Traffic Cone</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficconedescription">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficconelibrary">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficconemethods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficconeconfig">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficconeconnect">Connection Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficconeconstants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficconetutorial">Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/road_signage.html#traffic-light">Traffic Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficlightdescription">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficlightlibrary">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficlightmethods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficlightconfig">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficlightconnect">Connection Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficlightconstants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Objects/road_signage.html#trafficlighttutorial">Tutorial</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Objects/widgets.html">Widgets (Cube/Cylinder/Sphere/Autoclave cage/plastic bottle/metal can)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Objects/widgets.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/widgets.html#library">Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/widgets.html#methods">Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/widgets.html#configurations">Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/widgets.html#connection-points">Connection Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/widgets.html#constants">Constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/widgets.html#tutorial">Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Objects/basic_shapes.html">Basic Shapes (Cube/Cylinder/Sphere)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Objects/basic_shapes.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/basic_shapes.html#library">Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/basic_shapes.html#methods">Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/basic_shapes.html#configurations">Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/basic_shapes.html#connection-points">Connection Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/basic_shapes.html#constants">Constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Objects/basic_shapes.html#tutorial">Tutorial</a></li>
 </ul>
 </li>
 </ul>
