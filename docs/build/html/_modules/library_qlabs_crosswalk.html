@@ -11,6 +11,7 @@
       <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -31,7 +32,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
             <a href="../index.html">
-            <img src="../_static/Quanser-logo.png" class="logo" alt="Logo"/>
+            <img src="../_static/quanser_selfdrivingcarstudio.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -139,7 +140,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_CROSSWALK</span><span class="p">,</span><span class="n">location</span><span class="p">,</span> <span class="p">[</span><span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">],</span> <span class="n">scale</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="p">)</span></div>
  
-    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsCrosswalk.destroy"><a class="viewcode-back" href="../Objects/road_signage.html#library_qlabs_crosswalk.QLabsCrosswalk.destroy">[docs]</a>    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Destroys a crosswalk in an instance of QLabs.</span>
 
 <span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
@@ -150,10 +151,10 @@
 <span class="sd">        :rtype: int32</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">destroy_spawned_actor</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_CROSSWALK</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">destroy_spawned_actor</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_CROSSWALK</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsCrosswalk.ping"><a class="viewcode-back" href="../Objects/road_signage.html#library_qlabs_crosswalk.QLabsCrosswalk.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks if a crosswalk of the corresponding actor number exists in the QLabs environment.</span>
 
 <span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
@@ -164,9 +165,9 @@
 <span class="sd">        :rtype: boolean</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">ping_actor</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_CROSSWALK</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">ping_actor</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_CROSSWALK</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">get_world_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsCrosswalk.get_world_transform"><a class="viewcode-back" href="../Objects/road_signage.html#library_qlabs_crosswalk.QLabsCrosswalk.get_world_transform">[docs]</a>    <span class="k">def</span> <span class="nf">get_world_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the location, rotation, and scale in world coordinates of the crosswalk</span>
 <span class="sd">        </span>
 <span class="sd">        :param qlabs: A QuanserInteractiveLabs object.</span>
@@ -176,7 +177,7 @@
 <span class="sd">        :return: success, location, rotation, scale</span>
 <span class="sd">        :rtype: boolean, float array[3], float array[3], float array[3]</span>
 <span class="sd">        &quot;&quot;&quot;</span>    
-        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">get_world_transform</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_CROSSWALK</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">get_world_transform</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_CROSSWALK</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
