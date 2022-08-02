@@ -12,7 +12,7 @@ Keyboard Controls
 
 The following keyboard controls are how you move the default camera around the SDCS workspace.
 
-
+.. image:: Keyboard_Mouse_Controls.png 
 
 
 Coordinate Helper (Determining Locations)
@@ -40,20 +40,38 @@ Controlling Free/Open World Flying Cameras in the GUI
 -----------------------------------------------------
 By default, when a workspace is opened, the default camera is the initial view of the workspace that will be shown.
 
+.. figure:: QuanserInteractiveLabs_default.png
+    :alt: The default camera view from the Quanser Interactive Labs.
+    :align: center
+
+    Default QCar Workspace View in Quanser Interactive Labs
+
 Adding Cameras in the GUI
 -------------------------
 
 In order to add a new camera to the scene click the drop down under **Current Camera** and click on **Add a Camera**.  
 This will add a new camera to the scene and open a window to display the camera options.
 
+.. image:: addingACamera.png
+    :alt: under the drop down menu you will see the add a camera option
+    :align: center
+
 Camera Options
 ^^^^^^^^^^^^^^
+
+There are several different camera options that can be changed. 
+
 * **Camera Location & Rotation** - The camera will initially appear in the location the current scene is showing, however this camera can be moved by using the basic :ref:`keyboard controls` to move to a different location.
-* **Feild of view (FOV)** - FOV can be changed by sliding the slider or inputting a specific value.
+* **Field of view (FOV)** - FOV can be changed by sliding the slider or inputting a specific value.
 * If the *Cinematic camera* option is toggled to on, then you can also change the **aperture** and the **focal distance** using their respective sliders or inputting specific values.
 * **Lock Camera Location** - To fix a camera in a specific location, navigate to that location and simply toggle the *Lock camera location* option.
 
-.. note:: If you close the window on purpose or by accident, you can find your newly added camera under the drop down menu and can open it again by clicking on the triple bar next to the drop down menu.
+.. image:: cameraOptions.png
+    :scale: 75%
+    :align: center
+    :alt: camera options
+
+.. tip:: If you close the window on purpose or by accident, you can find your newly added camera under the drop down menu and can open it again by clicking on the triple bar next to the drop down menu.
 
 You can add as many cameras as you want, as they don't consume resources until you switch to them.
 

@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -33,7 +34,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
             <a href="../index.html">
-            <img src="../_static/Quanser-logo.png" class="logo" alt="Logo"/>
+            <img src="../_static/quanser_selfdrivingcarstudio.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -55,10 +56,10 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Person</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#library">Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configurations">Configurations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connection-points">Connection Points</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tutorial">Tutorial</a></li>
 </ul>
 </li>
@@ -102,21 +103,61 @@
 <span id="person-library"></span><h1>Person<a class="headerlink" href="#person" title="Permalink to this headline"></a></h1>
 <section id="description">
 <span id="persondescription"></span><h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>People are considered “actors” in the Virtual Self Driving Car Studio.
+The person library controls the people placed in the Virtual Self Driving Car Studio workspaces of the Quanser Interactive Labs.</p>
 </section>
 <section id="library">
 <span id="personlibrary"></span><h2>Library<a class="headerlink" href="#library" title="Permalink to this headline"></a></h2>
-</section>
-<section id="methods">
-<span id="personmethods"></span><h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
-</section>
-<section id="configurations">
-<span id="personconfig"></span><h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline"></a></h2>
-</section>
-<section id="connection-points">
-<span id="personconnect"></span><h2>Connection Points<a class="headerlink" href="#connection-points" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="library_qlabs_silhouette_person.QLabsSilhouettePerson">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_qlabs_silhouette_person.</span></span><span class="sig-name descname"><span class="pre">QLabsSilhouettePerson</span></span><a class="reference internal" href="../_modules/library_qlabs_silhouette_person.html#QLabsSilhouettePerson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_silhouette_person.QLabsSilhouettePerson" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="constants">
 <span id="personconstants"></span><h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_silhouette_person.QLabsSilhouettePerson.ID_SILHOUETTE_PERSON">
+<span class="sig-prename descclassname"><span class="pre">QLabsSilhouettePerson.</span></span><span class="sig-name descname"><span class="pre">ID_SILHOUETTE_PERSON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10030</span></em><a class="headerlink" href="#library_qlabs_silhouette_person.QLabsSilhouettePerson.ID_SILHOUETTE_PERSON" title="Permalink to this definition"></a></dt>
+<dd><p>Class ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_silhouette_person.QLabsSilhouettePerson.FCN_SILHOUETTE_PERSON_MOVE_TO">
+<span class="sig-prename descclassname"><span class="pre">QLabsSilhouettePerson.</span></span><span class="sig-name descname"><span class="pre">FCN_SILHOUETTE_PERSON_MOVE_TO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#library_qlabs_silhouette_person.QLabsSilhouettePerson.FCN_SILHOUETTE_PERSON_MOVE_TO" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_silhouette_person.QLabsSilhouettePerson.FCN_SILHOUETTE_PERSON_MOVE_TO_ACK">
+<span class="sig-prename descclassname"><span class="pre">QLabsSilhouettePerson.</span></span><span class="sig-name descname"><span class="pre">FCN_SILHOUETTE_PERSON_MOVE_TO_ACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#library_qlabs_silhouette_person.QLabsSilhouettePerson.FCN_SILHOUETTE_PERSON_MOVE_TO_ACK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="methods">
+<span id="personmethods"></span><h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_silhouette_person.QLabsSilhouettePerson.spawn">
+<span class="sig-prename descclassname"><span class="pre">QLabsSilhouettePerson.</span></span><span class="sig-name descname"><span class="pre">spawn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_silhouette_person.html#QLabsSilhouettePerson.spawn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_silhouette_person.QLabsSilhouettePerson.spawn" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_silhouette_person.QLabsSilhouettePerson.spawn_degrees">
+<span class="sig-prename descclassname"><span class="pre">QLabsSilhouettePerson.</span></span><span class="sig-name descname"><span class="pre">spawn_degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_silhouette_person.html#QLabsSilhouettePerson.spawn_degrees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_silhouette_person.QLabsSilhouettePerson.spawn_degrees" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_silhouette_person.QLabsSilhouettePerson.move_to">
+<span class="sig-prename descclassname"><span class="pre">QLabsSilhouettePerson.</span></span><span class="sig-name descname"><span class="pre">move_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_silhouette_person.html#QLabsSilhouettePerson.move_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_silhouette_person.QLabsSilhouettePerson.move_to" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="configurations">
+<span id="personconfig"></span><h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline"></a></h2>
+<p>There are several configurations for a person generated in the Quanser Interactive Labs.</p>
+<img alt="../_images/people.png" src="../_images/people.png" />
+</section>
+<section id="connection-points">
+<span id="personconnect"></span><h2>Connection Points<a class="headerlink" href="#connection-points" title="Permalink to this headline"></a></h2>
 </section>
 <section id="tutorial">
 <span id="persontutorial"></span><h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline"></a></h2>

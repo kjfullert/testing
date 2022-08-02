@@ -16,10 +16,27 @@ Description
 Library
 ^^^^^^^
 
+.. autoclass:: library_qlabs_widget.QLabsWidget
+
+.. _widgetConstants:
+
+Constants
+^^^^^^^^^
+
+.. autoattribute:: library_qlabs_widget.QLabsWidget.CUBE
+.. autoattribute:: library_qlabs_widget.QLabsWidget.CYLINDER
+.. autoattribute:: library_qlabs_widget.QLabsWidget.SPHERE
+.. autoattribute:: library_qlabs_widget.QLabsWidget.AUTOCLAVE_CAGE
+.. autoattribute:: library_qlabs_widget.QLabsWidget.PLASTIC_BOTTLE
+.. autoattribute:: library_qlabs_widget.QLabsWidget.METAL_CAN
+
 .. _widgetMethods:
 
 Methods
 ^^^^^^^
+
+.. automethod:: library_qlabs_widget.QLabsWidget.spawn
+.. automethod:: library_qlabs_widget.QLabsWidget.spawn_degrees
 
 .. _widgetConfig:
 
@@ -30,11 +47,6 @@ Configurations
 
 Connection Points
 ^^^^^^^^^^^^^^^^^
-
-.. _widgetConstants:
-
-Constants
-^^^^^^^^^
 
 .. _widgetTutorial:
 

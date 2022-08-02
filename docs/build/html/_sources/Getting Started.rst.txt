@@ -67,7 +67,7 @@ If you have trouble or for more information about this `click here <https://docs
 
 The following tutorial will walk you through how to get a simple script up and running.
 
-Tutorial
-========
+Tutorial - Getting Started
+==========================
 
 .. I think there should be a tutorial script to walk someone through a simple python file in here.

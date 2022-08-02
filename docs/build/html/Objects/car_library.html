@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -33,7 +34,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
             <a href="../index.html">
-            <img src="../_static/Quanser-logo.png" class="logo" alt="Logo"/>
+            <img src="../_static/quanser_selfdrivingcarstudio.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -56,10 +57,10 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Cars</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#library">Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configurations">Configurations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connection-points">Connection Points</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tutorial">Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#driving-cars">Driving Cars</a></li>
 </ul>
@@ -101,23 +102,147 @@
              
   <section id="cars">
 <span id="car-library"></span><h1>Cars<a class="headerlink" href="#cars" title="Permalink to this headline"></a></h1>
+<a class="reference internal image-reference" href="../_images/qcar.png"><img alt="../_images/qcar.png" class="align-center" src="../_images/qcar.png" style="width: 140.0px; height: 162.25px;" /></a>
 <section id="description">
 <span id="cardescription"></span><h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>Cars are considered “actors” in the Virtual Self Driving Car Studio.
+The car library controls the QCars that are placed in the workspace of the Quanser Interactive Labs.</p>
 </section>
 <section id="library">
 <span id="carlibrary"></span><h2>Library<a class="headerlink" href="#library" title="Permalink to this headline"></a></h2>
-</section>
-<section id="methods">
-<span id="carmethods"></span><h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
-</section>
-<section id="configurations">
-<span id="carconfig"></span><h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline"></a></h2>
-</section>
-<section id="connection-points">
-<span id="carconnect"></span><h2>Connection Points<a class="headerlink" href="#connection-points" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_qlabs_qcar.</span></span><span class="sig-name descname"><span class="pre">QLabsQCar</span></span><a class="reference internal" href="../_modules/library_qlabs_qcar.html#QLabsQCar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="constants">
 <span id="carconstants"></span><h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.ID_QCAR">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">ID_QCAR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">160</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.ID_QCAR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_SET_VELOCITY_AND_REQUEST_STATE">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_SET_VELOCITY_AND_REQUEST_STATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_SET_VELOCITY_AND_REQUEST_STATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_VELOCITY_STATE_RESPONSE">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_VELOCITY_STATE_RESPONSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_VELOCITY_STATE_RESPONSE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_SET_TRANSFORM_AND_REQUEST_STATE">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_SET_TRANSFORM_AND_REQUEST_STATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_SET_TRANSFORM_AND_REQUEST_STATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_TRANSFORM_STATE_RESPONSE">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_TRANSFORM_STATE_RESPONSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_TRANSFORM_STATE_RESPONSE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_POSSESS">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_POSSESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_POSSESS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_POSSESS_ACK">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_POSSESS_ACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">21</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_POSSESS_ACK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_CAMERA_DATA_REQUEST">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_CAMERA_DATA_REQUEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_CAMERA_DATA_REQUEST" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.FCN_QCAR_CAMERA_DATA_RESPONSE">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">FCN_QCAR_CAMERA_DATA_RESPONSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">101</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.FCN_QCAR_CAMERA_DATA_RESPONSE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_CSI_RIGHT">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_CSI_RIGHT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_CSI_RIGHT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_CSI_BACK">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_CSI_BACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_CSI_BACK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_CSI_LEFT">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_CSI_LEFT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_CSI_LEFT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_CSI_FRONT">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_CSI_FRONT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_CSI_FRONT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_RGB">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_RGB</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_RGB" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_DEPTH">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_DEPTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_DEPTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_OVERHEAD">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_OVERHEAD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_OVERHEAD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.CAMERA_TRAILING">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">CAMERA_TRAILING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.CAMERA_TRAILING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="methods">
+<span id="carmethods"></span><h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.spawn">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">spawn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_qcar.html#QLabsQCar.spawn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.spawn" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.spawn_degrees">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">spawn_degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_qcar.html#QLabsQCar.spawn_degrees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.spawn_degrees" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.set_transform_and_request_state">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">set_transform_and_request_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enableDynamics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headlights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leftTurnSignal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rightTurnSignal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brake</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">honk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_qcar.html#QLabsQCar.set_transform_and_request_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.set_transform_and_request_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.set_velocity_and_request_state">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">set_velocity_and_request_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headlights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leftTurnSignal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rightTurnSignal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brake</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">honk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_qcar.html#QLabsQCar.set_velocity_and_request_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.set_velocity_and_request_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.possess">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">possess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_qcar.html#QLabsQCar.possess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.possess" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_qcar.QLabsQCar.get_camera_data">
+<span class="sig-prename descclassname"><span class="pre">QLabsQCar.</span></span><span class="sig-name descname"><span class="pre">get_camera_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qlabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_qcar.html#QLabsQCar.get_camera_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_qcar.QLabsQCar.get_camera_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="configurations">
+<span id="carconfig"></span><h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline"></a></h2>
+<p>There are no configurations options for the QCar.</p>
+</section>
+<section id="connection-points">
+<span id="carconnect"></span><h2>Connection Points<a class="headerlink" href="#connection-points" title="Permalink to this headline"></a></h2>
 </section>
 <section id="tutorial">
 <span id="cartutorial"></span><h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline"></a></h2>

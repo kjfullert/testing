@@ -16,7 +16,7 @@ Design Philosophy
 =================
 The Self-Driving Car Studio's Virtual Lab has been designed for python script tests.  
 Although there are some basic interface options, the current Self-Driving Car Virtual Studio is not designed to be used through the interface alone.
-We therefore highly recommend that you try our simple :ref:`Tutorial` to get started with python scripts for the Self-Driving Car Virtual Studio and get used to our libraries and the capabilities of our workspaces. 
+We therefore highly recommend that you try our simple :ref:`Tutorial - Getting Started` to get started with python scripts for the Self-Driving Car Virtual Studio and get used to our libraries and the capabilities of our workspaces. 
 
 
 Contributing

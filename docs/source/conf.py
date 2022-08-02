@@ -59,17 +59,20 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 
-import sphinx_rtd_theme #sphinx_theme
+#import sphinx_rtd_theme #sphinx_theme
 html_theme = 'sphinx_rtd_theme' #'stanford_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 #html_theme_path = [sphinx_theme.get_html_theme_path('stanford_theme')]
 html_static_path = ['_static']
+html_css_files = [
+    'custom.css',
+]
 html_theme_options = {
-    'style_nav_header_background': 'white', #'#e21b22', 
+    'style_nav_header_background': 'white', #'#e21b22',
     'logo_only': True,
-
 }
-html_logo = 'Quanser-logo.png'
+html_logo = 'quanser_selfdrivingcarstudio.png'
+
 sphinx_tabs_disable_tab_closing = True

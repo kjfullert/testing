@@ -79,21 +79,22 @@
            <div itemprop="articleBody">
              
   <h1>Source code for library_qlabs_free_camera</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">library_qlabs</span> <span class="kn">import</span> <span class="n">QuanserInteractiveLabs</span><span class="p">,</span> <span class="n">CommModularContainer</span>
-<span class="kn">from</span> <span class="nn">quanser.common</span> <span class="kn">import</span> <span class="n">GenericError</span>
-<span class="kn">import</span> <span class="nn">math</span>
+<span></span><span class="kn">from</span> <span class="nn">library_qlabs_common</span> <span class="kn">import</span> <span class="n">QLabsCommon</span>
+<span class="kn">from</span> <span class="nn">library_qlabs</span> <span class="kn">import</span> <span class="n">CommModularContainer</span>
 
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
         
         
 <span class="c1">######################### MODULAR CONTAINER CLASS #########################</span>
 
 <div class="viewcode-block" id="QLabsFreeCamera"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera">[docs]</a><span class="k">class</span> <span class="nc">QLabsFreeCamera</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; This class supports the spawning and control of free movement cameras in QLabs open worlds.&quot;&quot;&quot;</span>
 
-    <span class="sd">&quot;&quot;&quot; This class documents the QLabs Free Camera.&quot;&quot;&quot;</span>
-
-    <span class="n">ID_FREE_CAMERA</span> <span class="o">=</span> <span class="mi">170</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="n">ID_FREE_CAMERA</span> <span class="o">=</span> <span class="mi">170</span> 
+    <span class="sd">&quot;&quot;&quot;Class ID&quot;&quot;&quot;</span>
     <span class="n">FCN_FREE_CAMERA_POSSESS</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
     <span class="n">FCN_FREE_CAMERA_POSSESS_ACK</span> <span class="o">=</span> <span class="mi">11</span>
@@ -106,145 +107,142 @@
     <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
     <span class="n">FCN_FREE_CAMERA_SET_TRANSFORM_ACK</span> <span class="o">=</span> <span class="mi">15</span>
     <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
-
-    
-    <span class="c1"># Initialize class</span>
+    <span class="n">FCN_FREE_CAMERA_SET_IMAGE_RESOLUTION</span> <span class="o">=</span> <span class="mi">90</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="n">FCN_FREE_CAMERA_SET_IMAGE_RESOLUTION_RESPONSE</span> <span class="o">=</span> <span class="mi">91</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="n">FCN_FREE_CAMERA_REQUEST_IMAGE</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="n">FCN_FREE_CAMERA_RESPONSE_IMAGE</span> <span class="o">=</span> <span class="mi">101</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+   
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
        <span class="sd">&quot;&quot;&quot; Constructor Method &quot;&quot;&quot;</span>
        <span class="k">return</span>
        
-<div class="viewcode-block" id="QLabsFreeCamera.spawn"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn">[docs]</a>    <span class="k">def</span> <span class="nf">spawn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsFreeCamera.spawn"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn">[docs]</a>    <span class="k">def</span> <span class="nf">spawn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
         
-        <span class="sd">&quot;&quot;&quot;Spawns a camera in an instance of qlabs at a specific location and rotation using radians.</span>
+        <span class="sd">&quot;&quot;&quot;Spawns a camera in an instance of QLabs at a specific location and rotation using radians.</span>
 
-<span class="sd">        :param qlabs: A handle to the QLabs object</span>
-<span class="sd">        :param deviceNumber: User defined unique identifier for the class device in qlabs</span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
 <span class="sd">        :param location: An array of floats for x, y and z coordinates</span>
-<span class="sd">        :param rotation: An array of floats for the roll, pitch, yaw</span>
+<span class="sd">        :param rotation: An array of floats for the roll, pitch, and yaw</span>
 <span class="sd">        :type qlabs: object</span>
-<span class="sd">        :type deviceNumber: uint16</span>
-<span class="sd">        :type location: array[3]</span>
-<span class="sd">        :type rotation: array[3]</span>
-<span class="sd">        :return: `True` if spawn was successful, `False` otherwise</span>
-<span class="sd">        :rtype: boolean</span>
-
-<span class="sd">        .. caution::</span>
-
-<span class="sd">            No two device numbers can be the same for the same class!</span>
-
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :type location: float array[3]</span>
+<span class="sd">        :type rotation: float array[3]</span>
+<span class="sd">        :return: 0 if successful, 1 class not available, 2 actor number not available or already in use, 3 unknown error, -1 communications error</span>
+<span class="sd">        :rtype: int32</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">deviceNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
            
-<div class="viewcode-block" id="QLabsFreeCamera.spawn_degrees"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn_degrees">[docs]</a>    <span class="k">def</span> <span class="nf">spawn_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsFreeCamera.spawn_degrees"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn_degrees">[docs]</a>    <span class="k">def</span> <span class="nf">spawn_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Spawns a camera in an instance of qlabs at a specific location and rotation using degrees.</span>
+<span class="sd">        Spawns a camera in an instance of QLabs at a specific location and rotation using degrees.</span>
 
-<span class="sd">        :param qlabs: A handle to the QLabs object</span>
-<span class="sd">        :param deviceNumber: User defined unique identifier for the class device in qlabs</span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
 <span class="sd">        :param location: An array of floats for x, y and z coordinates</span>
-<span class="sd">        :param rotation: An array of floats for the roll, pitch, yaw</span>
+<span class="sd">        :param rotation: An array of floats for the roll, pitch, and yaw</span>
 <span class="sd">        :type qlabs: object</span>
-<span class="sd">        :type deviceNumber: uint32</span>
-<span class="sd">        :type location: array[3]</span>
-<span class="sd">        :type rotation: array[3]</span>
-<span class="sd">        :return: `True` if spawn was successful, `False` otherwise</span>
-<span class="sd">        :rtype: boolean</span>
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :type location: float array[3]</span>
+<span class="sd">        :type rotation: float array[3]</span>
+<span class="sd">        :return: 0 if successful, 1 class not available, 2 actor number not available or already in use, 3 unknown error, -1 communications error</span>
+<span class="sd">        :rtype: int32</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
-        <span class="k">return</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">deviceNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span>  <span class="n">location</span><span class="p">,</span> <span class="p">[</span><span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
     
-<div class="viewcode-block" id="QLabsFreeCamera.spawn_and_parent_with_relative_transform"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn_and_parent_with_relative_transform">[docs]</a>    <span class="k">def</span> <span class="nf">spawn_and_parent_with_relative_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">parentClass</span><span class="p">,</span> <span class="n">parentDeviceNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsFreeCamera.spawn_and_parent_with_relative_transform"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn_and_parent_with_relative_transform">[docs]</a>    <span class="k">def</span> <span class="nf">spawn_and_parent_with_relative_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">parentClassID</span><span class="p">,</span> <span class="n">parentActorNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Spawns a camera in an instance of qlabs at a specific location and rotation relative to the parent device using radians.</span>
+<span class="sd">        Spawns a camera in an instance of QLabs at a specific location and rotation relative to the parent actor using radians.</span>
 
-<span class="sd">        :param qlabs: A handle to the QLabs object</span>
-<span class="sd">        :param deviceNumber: User defined unique identifier for the class device in qlabs</span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
 <span class="sd">        :param location: An array of floats for x, y and z coordinates</span>
 <span class="sd">        :param rotation: An array of floats for the roll, pitch, yaw</span>
-<span class="sd">        :param parentClass: Parent device ID (Can be found in the class library)</span>
-<span class="sd">        :param parentDeviceNumber: User defined unique identifier for the class device in qlabs</span>
-<span class="sd">        :param ParentComponent: `0` for the origin of the parent device, see parent device class for potential additional reference frame options</span>
-<span class="sd">        :param waitForConfirmation: Wait for acknowledgement from QLabs to proceed, this is a blocking operation</span>
-<span class="sd">            defaults to True</span>
+<span class="sd">        :param parentClassID: Parent class ID (Can be found in the class library)</span>
+<span class="sd">        :param parentActorNumber: The unique actorNumber identifier for the parent class in QLabs</span>
+<span class="sd">        :param ParentComponent: `0` for the origin of the parent actor, see the parent class for additional reference frame options</span>
 <span class="sd">        :type qlabs: object</span>
-<span class="sd">        :type deviceNumber: uint32</span>
+<span class="sd">        :type actorNumber: uint32</span>
 <span class="sd">        :type location: array[3]</span>
 <span class="sd">        :type rotation: array[3]</span>
-<span class="sd">        :type parentClass: uint32</span>
-<span class="sd">        :type parentDeviceNumber: uint32</span>
+<span class="sd">        :type parentClassID: uint32</span>
+<span class="sd">        :type parentActorNumber: uint32</span>
 <span class="sd">        :type ParentComponent: uint32</span>
-<span class="sd">        :return: `True` if spawn was successful (or if waitForConfirmation set to `False`), `False` otherwise</span>
-<span class="sd">        :rtype: boolean</span>
+<span class="sd">        :return: 0 if successful, 1 class not available, 2 actor number not available or already in use, 3 cannot find the parent actor, 4 unknown error, -1 communications error</span>
+<span class="sd">        :rtype: int32</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">spawn_and_parent_with_relative_transform</span><span class="p">(</span><span class="n">deviceNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parentClass</span><span class="p">,</span> <span class="n">parentDeviceNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">spawn_and_parent_with_relative_transform</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span>  <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parentClassID</span><span class="p">,</span> <span class="n">parentActorNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
    
-<div class="viewcode-block" id="QLabsFreeCamera.spawn_and_parent_with_relative_transform_degrees"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn_and_parent_with_relative_transform_degrees">[docs]</a>    <span class="k">def</span> <span class="nf">spawn_and_parent_with_relative_transform_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">parentClass</span><span class="p">,</span> <span class="n">parentDeviceNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsFreeCamera.spawn_and_parent_with_relative_transform_degrees"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.spawn_and_parent_with_relative_transform_degrees">[docs]</a>    <span class="k">def</span> <span class="nf">spawn_and_parent_with_relative_transform_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">parentClassID</span><span class="p">,</span> <span class="n">parentActorNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Spawns a camera in an instance of qlabs at a specific location and rotation relative to the parent device using degrees.</span>
+<span class="sd">        Spawns a camera in an instance of QLabs at a specific location and rotation relative to the parent actor using degrees.</span>
 <span class="sd">        </span>
-<span class="sd">        :param qlabs: A handle to the QLabs object</span>
-<span class="sd">        :param deviceNumber: User defined unique identifier for the class device in qlabs</span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
 <span class="sd">        :param location: An array of floats for x, y and z coordinates</span>
 <span class="sd">        :param rotation: An array of floats for the roll, pitch, yaw</span>
-<span class="sd">        :param parentClass: Parent device ID (Can be found in the class library)</span>
-<span class="sd">        :param parentDeviceNumber: User defined unique identifier for the class device in qlabs</span>
-<span class="sd">        :param ParentComponent: `0` for the origin of the parent device, see parent device class for potential additional reference frame options</span>
-<span class="sd">        :param waitForConfirmation: Wait for acknowledgement from QLabs to proceed, this is a blocking operation</span>
-<span class="sd">            defaults to True</span>
+<span class="sd">        :param parentClassID: Parent class ID (Can be found in the class library)</span>
+<span class="sd">        :param parentActorNumber: The unique actorNumber identifier for the parent class in QLabs</span>
+<span class="sd">        :param ParentComponent: `0` for the origin of the parent actor, see the parent class for additional reference frame options</span>
 <span class="sd">        :type qlabs: object</span>
-<span class="sd">        :type deviceNumber: uint32</span>
+<span class="sd">        :type actorNumber: uint32</span>
 <span class="sd">        :type location: array[3]</span>
 <span class="sd">        :type rotation: array[3]</span>
-<span class="sd">        :type parentClass: uint32</span>
-<span class="sd">        :type parentDeviceNumber: uint32</span>
+<span class="sd">        :type parentClassID: uint32</span>
+<span class="sd">        :type parentActorNumber: uint32</span>
 <span class="sd">        :type ParentComponent: uint32</span>
-<span class="sd">        :return: `True` if spawn was successful (or if waitForConfirmation set to `False`), `False` otherwise</span>
-<span class="sd">        :rtype: boolean</span>
+<span class="sd">        :return: 0 if successful, 1 class not available, 2 actor number not available or already in use, 3 cannot find the parent actor, 4 unknown error, -1 communications error</span>
+<span class="sd">        :rtype: int32</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">spawn_and_parent_with_relative_transform</span><span class="p">(</span><span class="n">deviceNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parentClass</span><span class="p">,</span> <span class="n">parentDeviceNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">spawn_and_parent_with_relative_transform</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span><span class="n">location</span><span class="p">,</span> <span class="p">[</span><span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parentClassID</span><span class="p">,</span> <span class="n">parentActorNumber</span><span class="p">,</span> <span class="n">parentComponent</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
    
     
-<div class="viewcode-block" id="QLabsFreeCamera.possess"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.possess">[docs]</a>    <span class="k">def</span> <span class="nf">possess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsFreeCamera.possess"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.possess">[docs]</a>    <span class="k">def</span> <span class="nf">possess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Possess a camera in QLabs.</span>
+<span class="sd">        Possess (take control of) a camera in QLabs.</span>
 <span class="sd">        </span>
-<span class="sd">        :param qlabs: A handle to the QLabs object</span>
-<span class="sd">        :param deviceNumber: User defined unique identifier for the class device in qlabs</span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
 <span class="sd">        :type qlabs: object</span>
-<span class="sd">        :type deviceNumber: uint32</span>
+<span class="sd">        :type actorNumber: uint32</span>
 <span class="sd">        :return: `True` if possessing the camera was successful, `False` otherwise</span>
 <span class="sd">        :rtype: boolean</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">CommModularContainer</span><span class="p">()</span>
         <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">deviceNumber</span> <span class="o">=</span> <span class="n">deviceNumber</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">deviceFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_POSSESS</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="n">actorNumber</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_POSSESS</span>
         <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
         <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
         
         <span class="n">qlabs</span><span class="o">.</span><span class="n">flush_receive</span><span class="p">()</span>  
         
         <span class="k">if</span> <span class="p">(</span><span class="n">qlabs</span><span class="o">.</span><span class="n">send_container</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
-            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_POSSESS_ACK</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_POSSESS_ACK</span><span class="p">)</span>
                     
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>  </div>
 
-<div class="viewcode-block" id="QLabsFreeCamera.set_camera_properties"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.set_camera_properties">[docs]</a>    <span class="k">def</span> <span class="nf">set_camera_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="n">fieldOfView</span><span class="p">,</span> <span class="n">depthOfField</span><span class="p">,</span> <span class="n">aperature</span><span class="p">,</span> <span class="n">focusDistance</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsFreeCamera.set_camera_properties"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.set_camera_properties">[docs]</a>    <span class="k">def</span> <span class="nf">set_camera_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">fieldOfView</span><span class="p">,</span> <span class="n">depthOfField</span><span class="p">,</span> <span class="n">aperature</span><span class="p">,</span> <span class="n">focusDistance</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets the camera properties.</span>
 <span class="sd">        </span>
-<span class="sd">        :param qlabs: A handle to the QLabs object</span>
-<span class="sd">        :param deviceNumber: User defined unique identifier for the class device in qlabs</span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
 <span class="sd">        :param fieldOfView: The field of view that the camera can see (range:5-150)</span>
 <span class="sd">        :param depthOfField: The depth of feild that the camera can see</span>
 <span class="sd">        :param aperature: The amount of light allowed into the camera sensor (range:2.0-22.0)</span>
 <span class="sd">        :param focusDistance: The focus distance that the camera can see (range:0.1-50.0)</span>
 <span class="sd">        :type qlabs: object</span>
-<span class="sd">        :type deviceNumber: uint32</span>
+<span class="sd">        :type actorNumber: uint32</span>
 <span class="sd">        :type fieldOfView:</span>
 <span class="sd">        :type depthOfField:</span>
 <span class="sd">        :type aperature:</span>
@@ -255,30 +253,30 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">CommModularContainer</span><span class="p">()</span>
         <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">deviceNumber</span> <span class="o">=</span> <span class="n">deviceNumber</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">deviceFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_CAMERA_PROPERTIES</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="n">actorNumber</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_CAMERA_PROPERTIES</span>
         <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;fBff&quot;</span><span class="p">,</span> <span class="n">fieldOfView</span><span class="p">,</span> <span class="n">depthOfField</span><span class="p">,</span> <span class="n">aperature</span><span class="p">,</span> <span class="n">focusDistance</span><span class="p">))</span>
         <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
         
         <span class="n">qlabs</span><span class="o">.</span><span class="n">flush_receive</span><span class="p">()</span>  
         
         <span class="k">if</span> <span class="p">(</span><span class="n">qlabs</span><span class="o">.</span><span class="n">send_container</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
-            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_CAMERA_PROPERTIES_ACK</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_CAMERA_PROPERTIES_ACK</span><span class="p">)</span>
                     
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
         
-<div class="viewcode-block" id="QLabsFreeCamera.set_transform"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.set_transform">[docs]</a>    <span class="k">def</span> <span class="nf">set_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsFreeCamera.set_transform"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.set_transform">[docs]</a>    <span class="k">def</span> <span class="nf">set_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Change the location and rotation of a spawned camera.</span>
+<span class="sd">        Change the location and rotation of a spawned camera in radians</span>
 <span class="sd">        </span>
-<span class="sd">        :param qlabs: A handle to the QLabs object</span>
-<span class="sd">        :param deviceNumber: User defined unique identifier for the class device in qlabs</span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
 <span class="sd">        :param location: An array of floats for x, y and z coordinates</span>
-<span class="sd">        :param rotation: An array of floats for the roll, pitch, yaw</span>
+<span class="sd">        :param rotation: An array of floats for the roll, pitch, yaw in radians</span>
 <span class="sd">        :type qlabs: object</span>
-<span class="sd">        :type deviceNumber: uint32</span>
+<span class="sd">        :type actorNumber: uint32</span>
 <span class="sd">        :type location: array[3]</span>
 <span class="sd">        :type rotation: array[3]</span>
 <span class="sd">        :return: `True` if spawn was successful, `False` otherwise</span>
@@ -287,19 +285,152 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">CommModularContainer</span><span class="p">()</span>
         <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">deviceNumber</span> <span class="o">=</span> <span class="n">deviceNumber</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">deviceFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_TRANSFORM</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="n">actorNumber</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_TRANSFORM</span>
         <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;ffffff&quot;</span><span class="p">,</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+
+        <span class="n">qlabs</span><span class="o">.</span><span class="n">flush_receive</span><span class="p">()</span>  
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">qlabs</span><span class="o">.</span><span class="n">send_container</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_TRANSFORM_ACK</span><span class="p">)</span>
+                                
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>     </div>
+
+<div class="viewcode-block" id="QLabsFreeCamera.set_transform_degrees"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.set_transform_degrees">[docs]</a>    <span class="k">def</span> <span class="nf">set_transform_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">rotation</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Change the location and rotation of a spawned camera in degrees</span>
+<span class="sd">        </span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
+<span class="sd">        :param location: An array of floats for x, y and z coordinates</span>
+<span class="sd">        :param rotation: An array of floats for the roll, pitch, yaw in degrees</span>
+<span class="sd">        :type qlabs: object</span>
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :type location: array[3]</span>
+<span class="sd">        :type rotation: array[3]</span>
+<span class="sd">        :return: `True` if spawn was successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">CommModularContainer</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="n">actorNumber</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_TRANSFORM</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;ffffff&quot;</span><span class="p">,</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rotation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
         <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
         
         <span class="n">qlabs</span><span class="o">.</span><span class="n">flush_receive</span><span class="p">()</span>  
         
         <span class="k">if</span> <span class="p">(</span><span class="n">qlabs</span><span class="o">.</span><span class="n">send_container</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
-            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">deviceNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_TRANSFORM_ACK</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_TRANSFORM_ACK</span><span class="p">)</span>
                     
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>     </div></div>
+            <span class="k">return</span> <span class="kc">False</span> </div>
+
+<div class="viewcode-block" id="QLabsFreeCamera.destroy"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.destroy">[docs]</a>    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Destroys a camera in an instance of QLabs.</span>
+
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
+<span class="sd">        :type qlabs: QuanserInteractiveLabs object</span>
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :return: The number of actors destroyed. -1 if failed.</span>
+<span class="sd">        :rtype: int32</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">destroy_spawned_actor</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QLabsFreeCamera.ping"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if a camera of the corresponding actor number exists in the QLabs environment.</span>
+
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
+<span class="sd">        :type qlabs: QuanserInteractiveLabs object</span>
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :return: `True` if spawn was successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">ping_actor</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="QLabsFreeCamera.get_world_transform"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.get_world_transform">[docs]</a>    <span class="k">def</span> <span class="nf">get_world_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the location, rotation, and scale in world coordinates of the camera</span>
+<span class="sd">        </span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object.</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
+<span class="sd">        :type qlabs: QuanserInteractiveLabs object</span>
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :return: success, location, rotation, scale</span>
+<span class="sd">        :rtype: boolean, float array[3], float array[3], float array[3]</span>
+<span class="sd">        &quot;&quot;&quot;</span>    
+        <span class="k">return</span> <span class="n">QLabsCommon</span><span class="p">()</span><span class="o">.</span><span class="n">get_world_transform</span><span class="p">(</span><span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="QLabsFreeCamera.set_image_capture_resolution"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.set_image_capture_resolution">[docs]</a>    <span class="k">def</span> <span class="nf">set_image_capture_resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">480</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Change the default width and height of image resolution for capture</span>
+<span class="sd">        </span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object.</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
+<span class="sd">        :param width: Must be an even number. Default 640</span>
+<span class="sd">        :param height: Must be an even number. Default 480</span>
+<span class="sd">        :type qlabs: QuanserInteractiveLabs object</span>
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :type width: uint32</span>
+<span class="sd">        :type height: uint32</span>
+<span class="sd">        :return: `True` if spawn was successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>   
+
+        <span class="n">c</span> <span class="o">=</span> <span class="n">CommModularContainer</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="n">actorNumber</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_IMAGE_RESOLUTION</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;II&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+        
+        <span class="n">qlabs</span><span class="o">.</span><span class="n">flush_receive</span><span class="p">()</span>  
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">qlabs</span><span class="o">.</span><span class="n">send_container</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_SET_IMAGE_RESOLUTION_RESPONSE</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+        
+
+<div class="viewcode-block" id="QLabsFreeCamera.get_image"><a class="viewcode-back" href="../Objects/camera_library.html#library_qlabs_free_camera.QLabsFreeCamera.get_image">[docs]</a>    <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Request an image from the camera actor. Note, set_image_capture_resolution must be set once per camera otherwise this method will fail.</span>
+<span class="sd">        </span>
+<span class="sd">        :param qlabs: A QuanserInteractiveLabs object.</span>
+<span class="sd">        :param actorNumber: User defined unique identifier for the class actor in QLabs</span>
+<span class="sd">        :type qlabs: QuanserInteractiveLabs object</span>
+<span class="sd">        :type actorNumber: uint32</span>
+<span class="sd">        :return: Success, RGB image data</span>
+<span class="sd">        :rtype: boolean, byte array[variable]</span>
+<span class="sd">        &quot;&quot;&quot;</span>   
+        <span class="n">c</span> <span class="o">=</span> <span class="n">CommModularContainer</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="n">actorNumber</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_REQUEST_IMAGE</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+        
+        <span class="n">qlabs</span><span class="o">.</span><span class="n">flush_receive</span><span class="p">()</span>  
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">qlabs</span><span class="o">.</span><span class="n">send_container</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_FREE_CAMERA</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_FREE_CAMERA_RESPONSE_IMAGE</span><span class="p">)</span>
+            <span class="n">data_size</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&gt;I&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+
+            <span class="n">jpg_buffer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imdecode</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">count</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+            
+            
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">jpg_buffer</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span></div></div>
 </pre></div>
 
            </div>

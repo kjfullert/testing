@@ -8,30 +8,48 @@ Person
 Description
 ^^^^^^^^^^^
 
+People are considered "actors" in the Virtual Self Driving Car Studio.  
+The person library controls the people placed in the Virtual Self Driving Car Studio workspaces of the Quanser Interactive Labs.
+
+
 .. _personlibrary:
 
 Library
 ^^^^^^^
+
+.. autoclass:: library_qlabs_silhouette_person.QLabsSilhouettePerson
+
+.. _personConstants:
+
+Constants
+^^^^^^^^^
+
+.. autoattribute:: library_qlabs_silhouette_person.QLabsSilhouettePerson.ID_SILHOUETTE_PERSON
+.. autoattribute:: library_qlabs_silhouette_person.QLabsSilhouettePerson.FCN_SILHOUETTE_PERSON_MOVE_TO
+.. autoattribute:: library_qlabs_silhouette_person.QLabsSilhouettePerson.FCN_SILHOUETTE_PERSON_MOVE_TO_ACK
 
 .. _personMethods:
 
 Methods
 ^^^^^^^
 
+.. automethod:: library_qlabs_silhouette_person.QLabsSilhouettePerson.spawn
+.. automethod:: library_qlabs_silhouette_person.QLabsSilhouettePerson.spawn_degrees
+.. automethod:: library_qlabs_silhouette_person.QLabsSilhouettePerson.move_to
+
 .. _personConfig:
 
 Configurations
 ^^^^^^^^^^^^^^
 
+There are several configurations for a person generated in the Quanser Interactive Labs.
+
+.. image:: pics/people.png 
+
 .. _personConnect:
 
 Connection Points
 ^^^^^^^^^^^^^^^^^
-
-.. _personConstants:
-
-Constants
-^^^^^^^^^
 
 .. _personTutorial:
 
