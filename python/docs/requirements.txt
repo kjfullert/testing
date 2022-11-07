@@ -10,7 +10,7 @@ sphinx-jinja2-compat==0.1.2
 sphinx-autodoc-typehints==1.18.3
 opencv-python
 #python==3.7
-PyQT6==6.3.1
+PyQT6
 pyqtgraph==0.12.4
 
 
