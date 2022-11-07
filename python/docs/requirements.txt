@@ -14,6 +14,5 @@ opencv-python
 #PyQT6==6.4.0
 setuptools==62.1.0
 
-
-#All Quanser API's from the QUARC/Python folder: python -m pip install --upgrade --find-links <package folder> <package folder>/quanser_api-2022.4.29-py2.py3-none-any.whl
+--upgrade --find-links "%QUARC_DIR%\python" "%QUARC_DIR%\python\quanser_api-2022.4.29-py2.py3-none-any.whl"
 
