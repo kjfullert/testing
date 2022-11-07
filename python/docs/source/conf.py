@@ -34,7 +34,6 @@ release = '0.1'
 # ones.
 extensions = [
     'sphinx_rtd_theme',
-    'sphinx_tabs.tabs',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.doctest',
     'sphinx.ext.duration',
@@ -43,6 +42,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx_collapse',
     'sphinx_panels',
+    'sphinx_tabs.tabs',
     #'sphinx_toolbox',
 ]
 
