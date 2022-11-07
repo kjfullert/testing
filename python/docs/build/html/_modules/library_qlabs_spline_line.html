@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>library_qlabs_spline_line &mdash; Quanser&#39;s Self Driving Car Virtual Studio Documentation 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx_collapse.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tablefix.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+            <a href="../index.html">
+            <img src="../_static/quanser_selfdrivingcarstudio.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Getting%20Started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../User%20Interface.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../System/index.html">Python System &amp; Utility Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Objects/index.html">Python Actors Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Code%20Style.html">Code Style</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quanser's Self Driving Car Virtual Studio Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>library_qlabs_spline_line</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for library_qlabs_spline_line</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">library_qlabs</span> <span class="kn">import</span> <span class="n">CommModularContainer</span>
+<span class="kn">from</span> <span class="nn">library_qlabs_actor</span> <span class="kn">import</span> <span class="n">QLabsActor</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+        
+        
+<span class="c1">######################### MODULAR CONTAINER CLASS #########################</span>
+
+<div class="viewcode-block" id="QLabsSplineLine"><a class="viewcode-back" href="../Objects/splines.html#library_qlabs_spline_line.QLabsSplineLine">[docs]</a><span class="k">class</span> <span class="nc">QLabsSplineLine</span><span class="p">(</span><span class="n">QLabsActor</span><span class="p">):</span>
+
+       
+    <span class="n">ID_SPLINE_LINE</span> <span class="o">=</span> <span class="mi">180</span>
+    <span class="sd">&quot;&quot;&quot;Class ID&quot;&quot;&quot;</span>
+    
+    <span class="n">FCN_SPLINE_LINE_SET_POINTS</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">FCN_SPLINE_LINE_SET_POINTS_ACK</span> <span class="o">=</span> <span class="mi">13</span>
+
+    <span class="n">LINEAR</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="sd">&quot;&quot;&quot;See configurations&quot;&quot;&quot;</span>
+    <span class="n">CURVE</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="sd">&quot;&quot;&quot;See configurations&quot;&quot;&quot;</span>
+    <span class="n">CONSTANT</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="sd">&quot;&quot;&quot;See configurations&quot;&quot;&quot;</span>
+    <span class="n">CLAMPED_CURVE</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="sd">&quot;&quot;&quot;See configurations&quot;&quot;&quot;</span>
+    
+        
+<div class="viewcode-block" id="QLabsSplineLine.__init__"><a class="viewcode-back" href="../Objects/splines.html#library_qlabs_spline_line.QLabsSplineLine.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qlabs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+       <span class="sd">&quot;&quot;&quot; Constructor Method</span>
+
+<span class="sd">       :param qlabs: A QuanserInteractiveLabs object</span>
+<span class="sd">       :param verbose: (Optional) Print error information to the console.</span>
+<span class="sd">       :type qlabs: object</span>
+<span class="sd">       :type verbose: boolean</span>
+<span class="sd">       &quot;&quot;&quot;</span>
+
+       <span class="bp">self</span><span class="o">.</span><span class="n">_qlabs</span> <span class="o">=</span> <span class="n">qlabs</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_SPLINE_LINE</span>
+       <span class="k">return</span></div>
+       
+<div class="viewcode-block" id="QLabsSplineLine.set_points"><a class="viewcode-back" href="../Objects/splines.html#library_qlabs_spline_line.QLabsSplineLine.set_points">[docs]</a>    <span class="k">def</span> <span class="nf">set_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">pointList</span><span class="p">,</span> <span class="n">alignEndPointTangents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;After spawning the origin of the spline actor, this method is used to create the individual points. At least 2 points must be specified to make a line.</span>
+
+<span class="sd">        :param color: Red, Green, Blue components of the RGB color on a 0.0 to 1.0 scale.</span>
+<span class="sd">        :param pointList: A 2D array with each row containing [x,y,z,width] elements. Width is in m.</span>
+<span class="sd">        :param alignEndPointTangents: (Optional) Sets the tangent of the first and last point to be the same.</span>
+<span class="sd">        :param waitForConfirmation: (Optional) Make this operation blocking until confirmation of the spawn has occurred.</span>
+<span class="sd">        :type color: float array[3]</span>
+<span class="sd">        :type pointList: float 2D array[4][n]</span>
+<span class="sd">        :type alignEndPointTangents: boolean</span>
+<span class="sd">        :type waitForConfirmation: boolean</span>
+<span class="sd">        :return: </span>
+<span class="sd">            - **status** - `True` if successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">CommModularContainer</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_SPLINE_LINE</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actorNumber</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_SPLINE_LINE_SET_POINTS</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;fffB&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">alignEndPointTangents</span><span class="p">))</span>
+        
+        <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">pointList</span><span class="p">:</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">+</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;ffff&quot;</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+        
+                
+        <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">waitForConfirmation</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_qlabs</span><span class="o">.</span><span class="n">flush_receive</span><span class="p">()</span>  
+        
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_qlabs</span><span class="o">.</span><span class="n">send_container</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">waitForConfirmation</span><span class="p">:</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_qlabs</span><span class="o">.</span><span class="n">wait_for_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ID_SPLINE_LINE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">actorNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_SPLINE_LINE_SET_POINTS_ACK</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">):</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;spawn_id: Communication timeout (spline classID </span><span class="si">{}</span><span class="s1">, actorNumber </span><span class="si">{}</span><span class="s1">).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classID</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">))</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+                    
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;spawn_id: Communication failed (spline classID </span><span class="si">{}</span><span class="s1">, actorNumber </span><span class="si">{}</span><span class="s1">).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classID</span><span class="p">,</span> <span class="n">actorNumber</span><span class="p">))</span>
+            <span class="k">return</span> <span class="kc">False</span>    </div>
+
+<div class="viewcode-block" id="QLabsSplineLine.circle_from_center"><a class="viewcode-back" href="../Objects/splines.html#library_qlabs_spline_line.QLabsSplineLine.circle_from_center">[docs]</a>    <span class="k">def</span> <span class="nf">circle_from_center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">numSplinePoints</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;After spawning the origin of the spline actor, this method is used to create a circle. Configuration 1 is recommended when spawning the line.</span>
+
+<span class="sd">        :param radius: Radius in m</span>
+<span class="sd">        :param lineWidth: Line width in m</span>
+<span class="sd">        :param color: Red, Green, Blue components of the RGB color on a 0.0 to 1.0 scale.</span>
+<span class="sd">        :param numSplinePoints: The number of points distributed around the circle. Splines will automatically round the edges, but more points will be needed for larger circles to achieve an accurate circle.</span>
+<span class="sd">        :param waitForConfirmation: (Optional) Make this operation blocking until confirmation of the spawn has occurred.</span>
+<span class="sd">        :type radius: float</span>
+<span class="sd">        :type lineWidth: float</span>
+<span class="sd">        :type color: float array[3]</span>
+<span class="sd">        :type numSplinePoints: integer</span>
+<span class="sd">        :type waitForConfirmation: boolean</span>
+<span class="sd">        :return: </span>
+<span class="sd">            - **status** - `True` if successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">angle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numSplinePoints</span><span class="p">):</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">radius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="o">/</span><span class="n">numSplinePoints</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">),</span> <span class="n">radius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="o">/</span><span class="n">numSplinePoints</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_points</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">pointList</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">alignEndPointTangents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="p">)</span></div>
+        
+     
+<div class="viewcode-block" id="QLabsSplineLine.arc_from_center"><a class="viewcode-back" href="../Objects/splines.html#library_qlabs_spline_line.QLabsSplineLine.arc_from_center">[docs]</a>    <span class="k">def</span> <span class="nf">arc_from_center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">startAngle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">endAngle</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">numSplinePoints</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        
+        <span class="sd">&quot;&quot;&quot;After spawning the origin of the spline actor, this method is used to create an arc. Configuration 1 is recommended when spawning the line.</span>
+
+<span class="sd">        :param radius: Radius in m</span>
+<span class="sd">        :param startAngle: Angle relative to the spawn orientation in radians</span>
+<span class="sd">        :param endAngle: Angle relative to the spawn orientation in radians</span>
+<span class="sd">        :param lineWidth: Line width in m</span>
+<span class="sd">        :param color: Red, Green, Blue components of the RGB color on a 0.0 to 1.0 scale.</span>
+<span class="sd">        :param numSplinePoints: The number of points distributed around the circle. Splines will automatically round the edges, but more points will be needed for larger circles to achieve an accurate circle.</span>
+<span class="sd">        :param waitForConfirmation: (Optional) Make this operation blocking until confirmation of the spawn has occurred.</span>
+<span class="sd">        :type radius: float</span>
+<span class="sd">        :type startAngle: float</span>
+<span class="sd">        :type endAngle: float</span>
+<span class="sd">        :type lineWidth: float</span>
+<span class="sd">        :type color: float array[3]</span>
+<span class="sd">        :type numSplinePoints: integer</span>
+<span class="sd">        :type waitForConfirmation: boolean</span>
+<span class="sd">        :return: </span>
+<span class="sd">            - **status** - `True` if successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">angle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numSplinePoints</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">radius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="o">/</span><span class="n">numSplinePoints</span><span class="o">*</span><span class="p">(</span><span class="n">endAngle</span><span class="o">-</span><span class="n">startAngle</span><span class="p">)</span><span class="o">+</span><span class="n">startAngle</span><span class="p">),</span> <span class="n">radius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="o">/</span><span class="n">numSplinePoints</span><span class="o">*</span><span class="p">(</span><span class="n">endAngle</span><span class="o">-</span><span class="n">startAngle</span><span class="p">)</span><span class="o">+</span><span class="n">startAngle</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_points</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">pointList</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">alignEndPointTangents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="QLabsSplineLine.arc_from_center_degrees"><a class="viewcode-back" href="../Objects/splines.html#library_qlabs_spline_line.QLabsSplineLine.arc_from_center_degrees">[docs]</a>    <span class="k">def</span> <span class="nf">arc_from_center_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">startAngle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">endAngle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">numSplinePoints</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;After spawning the origin of the spline actor, this method is used to create an arc. Configuration 1 is recommended when spawning the line.</span>
+
+<span class="sd">        :param radius: Radius in m</span>
+<span class="sd">        :param startAngle: Angle relative to the spawn orientation in degrees</span>
+<span class="sd">        :param endAngle: Angle relative to the spawn orientation in degrees</span>
+<span class="sd">        :param lineWidth: Line width in m</span>
+<span class="sd">        :param color: Red, Green, Blue components of the RGB color on a 0.0 to 1.0 scale.</span>
+<span class="sd">        :param numSplinePoints: The number of points distributed around the circle. Splines will automatically round the edges, but more points will be needed for larger circles to achieve an accurate circle.</span>
+<span class="sd">        :param waitForConfirmation: (Optional) Make this operation blocking until confirmation of the spawn has occurred.</span>
+<span class="sd">        :type radius: float</span>
+<span class="sd">        :type startAngle: float</span>
+<span class="sd">        :type endAngle: float</span>
+<span class="sd">        :type lineWidth: float</span>
+<span class="sd">        :type color: float array[3]</span>
+<span class="sd">        :type numSplinePoints: integer</span>
+<span class="sd">        :type waitForConfirmation: boolean</span>
+<span class="sd">        :return: </span>
+<span class="sd">            - **status** - `True` if successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span>  <span class="bp">self</span><span class="o">.</span><span class="n">arc_from_center</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">startAngle</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">endAngle</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">numSplinePoints</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="QLabsSplineLine.rounded_rectangle_from_center"><a class="viewcode-back" href="../Objects/splines.html#library_qlabs_spline_line.QLabsSplineLine.rounded_rectangle_from_center">[docs]</a>    <span class="k">def</span> <span class="nf">rounded_rectangle_from_center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cornerRadius</span><span class="p">,</span> <span class="n">xWidth</span><span class="p">,</span> <span class="n">yLength</span><span class="p">,</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;After spawning the origin of the spline actor, this method is used to create a rounded rectangle. Configuration 1 is recommended when spawning the line.</span>
+
+<span class="sd">        :param cornerRadius: Corner radius in m</span>
+<span class="sd">        :param xWidth: Dimension in m of the rectangle in the local x axis</span>
+<span class="sd">        :param yLength: Dimension in m of the rectangle in the local y axis</span>
+<span class="sd">        :param lineWidth: Line width in m</span>
+<span class="sd">        :param color: Red, Green, Blue components of the RGB color on a 0.0 to 1.0 scale.</span>
+<span class="sd">        :param waitForConfirmation: (Optional) Make this operation blocking until confirmation of the spawn has occurred.</span>
+<span class="sd">        :type cornerRadius: float</span>
+<span class="sd">        :type xWidth: float</span>
+<span class="sd">        :type yLength: float</span>
+<span class="sd">        :type lineWidth: float</span>
+<span class="sd">        :type color: float array[3]</span>
+<span class="sd">        :type numSplinePoints: integer</span>
+<span class="sd">        :type waitForConfirmation: boolean</span>
+<span class="sd">        :return: </span>
+<span class="sd">            - **status** - `True` if successful, `False` otherwise</span>
+<span class="sd">        :rtype: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spawn_spline_rounded_rectangle_from_center_point_list</span><span class="p">(</span><span class="n">cornerRadius</span><span class="p">,</span> <span class="n">xWidth</span><span class="p">,</span> <span class="n">yLength</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_points</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">pointList</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">alignEndPointTangents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+    
+ 
+    
+    <span class="k">def</span> <span class="nf">_spawn_spline_rounded_rectangle_from_center_point_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cornerRadius</span><span class="p">,</span> <span class="n">xWidth</span><span class="p">,</span> <span class="n">yLength</span><span class="p">,</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">xWidth</span> <span class="o">&lt;=</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">xWidth</span> <span class="o">=</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">yLength</span> <span class="o">&lt;=</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">yLength</span> <span class="o">=</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span>
+        
+        <span class="n">circleSegmentLength</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span><span class="o">/</span><span class="mi">8</span>
+    
+        <span class="n">xCount</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">xWidth</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">cornerRadius</span><span class="p">)</span><span class="o">/</span><span class="n">circleSegmentLength</span><span class="p">)</span>
+        <span class="n">yCount</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">yLength</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">cornerRadius</span><span class="p">)</span><span class="o">/</span><span class="n">circleSegmentLength</span><span class="p">)</span>
+    
+        <span class="c1"># Y</span>
+        <span class="c1"># ▲</span>
+        <span class="c1"># │</span>
+        <span class="c1"># ┼───► X</span>
+        <span class="c1">#</span>
+        <span class="c1">#   4───────3</span>
+        <span class="c1">#   │       │</span>
+        <span class="c1">#   │   ┼   │</span>
+        <span class="c1">#   │       │</span>
+        <span class="c1">#   1───────2</span>
+    
+        <span class="n">offset225deg</span> <span class="o">=</span> <span class="n">cornerRadius</span><span class="o">-</span><span class="n">cornerRadius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>
+        <span class="n">offset45deg</span> <span class="o">=</span> <span class="n">cornerRadius</span><span class="o">-</span><span class="n">cornerRadius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> 
+        <span class="n">offset675deg</span> <span class="o">=</span> <span class="n">cornerRadius</span><span class="o">-</span><span class="n">cornerRadius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+    
+        <span class="c1"># corner 1</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">cornerRadius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset675deg</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset225deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset45deg</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset45deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset225deg</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset675deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">cornerRadius</span><span class="p">,</span><span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+    
+        <span class="c1"># x1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">xWidth</span> <span class="o">&gt;</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">sideSegmentLength</span> <span class="o">=</span> <span class="p">(</span><span class="n">xWidth</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">cornerRadius</span><span class="p">)</span><span class="o">/</span><span class="n">xCount</span>
+       
+            <span class="k">for</span> <span class="n">sideCount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xCount</span><span class="p">):</span>
+                 <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">cornerRadius</span> <span class="o">+</span> <span class="n">sideCount</span><span class="o">*</span><span class="n">sideSegmentLength</span><span class="p">,</span><span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+    
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">cornerRadius</span><span class="p">,</span><span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+
+        <span class="c1"># corner 2</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset225deg</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset675deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset45deg</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset45deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset675deg</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset225deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">cornerRadius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+ 
+        <span class="c1"># y1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">yLength</span> <span class="o">&gt;</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">sideSegmentLength</span> <span class="o">=</span> <span class="p">(</span><span class="n">yLength</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">cornerRadius</span><span class="p">)</span><span class="o">/</span><span class="n">yCount</span>
+       
+            <span class="k">for</span> <span class="n">sideCount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">yCount</span><span class="p">):</span>
+                <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">cornerRadius</span>  <span class="o">+</span> <span class="n">sideCount</span><span class="o">*</span><span class="n">sideSegmentLength</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">cornerRadius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+
+        <span class="c1"># corner 3</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset675deg</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset225deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset45deg</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset45deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset225deg</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset675deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">cornerRadius</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+    
+        <span class="c1"># x2</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">xWidth</span> <span class="o">&gt;</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">sideSegmentLength</span> <span class="o">=</span> <span class="p">(</span><span class="n">xWidth</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">cornerRadius</span><span class="p">)</span><span class="o">/</span><span class="n">xCount</span>
+        
+            <span class="k">for</span> <span class="n">sideCount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xCount</span><span class="p">):</span>
+                <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">cornerRadius</span> <span class="o">-</span> <span class="n">sideCount</span><span class="o">*</span><span class="n">sideSegmentLength</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+    
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">cornerRadius</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>  
+        
+        <span class="c1"># corner 4     </span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset225deg</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset675deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset45deg</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset45deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">offset675deg</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">offset225deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">cornerRadius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+    
+        <span class="c1"># y2</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">yLength</span> <span class="o">&gt;</span> <span class="n">cornerRadius</span><span class="o">*</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">sideSegmentLength</span> <span class="o">=</span> <span class="p">(</span><span class="n">yLength</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">cornerRadius</span><span class="p">)</span><span class="o">/</span><span class="n">yCount</span>
+       
+            <span class="k">for</span> <span class="n">sideCount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">yCount</span><span class="p">):</span>
+                <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">xWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">yLength</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">cornerRadius</span> <span class="o">-</span> <span class="n">sideCount</span><span class="o">*</span><span class="n">sideSegmentLength</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">])</span>
+
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">points</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Quanser.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
