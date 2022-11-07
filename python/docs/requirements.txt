@@ -11,7 +11,7 @@ sphinx-autodoc-typehints==1.18.3
 opencv-python
 #python==3.7
 pyqtgraph==0.12.4
-PyQT6
+PyQT6==6.4.0
 
 
 
