@@ -40,7 +40,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.viewcode',
-    'sphinx_collapse',
+    #'sphinx_collapse',
     'sphinx_panels',
     'sphinx_tabs.tabs',
     #'sphinx_toolbox',
