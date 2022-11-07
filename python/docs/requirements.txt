@@ -9,7 +9,7 @@ readthedocs-sphinx-search==0.1.2
 sphinx-jinja2-compat==0.1.2
 sphinx-autodoc-typehints==1.18.3
 opencv-python
-python==3.7
+#python==3.7
 pyqtgraph==0.12.4
 PyQT6==6.3.1
 
