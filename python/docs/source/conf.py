@@ -41,7 +41,6 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.viewcode',
-    'sphinx_tabs.tabs',
     'sphinx_collapse',
     'sphinx_panels',
     #'sphinx_toolbox',
