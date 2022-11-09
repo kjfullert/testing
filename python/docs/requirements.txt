@@ -13,7 +13,7 @@ opencv-python
 #pyqtgraph==0.12.4
 #PyQT6==6.4.0
 setuptools==62.1.0
-
+git+https://github.com/quanser/testingWhl/blob/main/quanser_common-2022.10.19-py2.py3-none-any.whl
 
 
 #python -m pip install --upgrade --find-links "%QUARC_DIR%\python" "%QUARC_DIR%\python\quanser_api-2022.4.29-py2.py3-none-any.whl"
