@@ -7,7 +7,6 @@
   <title>Basic Shapes &mdash; Quanser&#39;s Self Driving Car Virtual Studio Documentation 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/sphinx_collapse.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
@@ -44,8 +43,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Getting%20Started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../User%20Interface.html">User Interface</a></li>
@@ -149,6 +147,26 @@ Interactive Labs.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.SHAPE_SPHERE">
 <span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">SHAPE_SPHERE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.SHAPE_SPHERE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.COMBINE_AVERAGE">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">COMBINE_AVERAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.COMBINE_AVERAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.COMBINE_MIN">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">COMBINE_MIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.COMBINE_MIN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.COMBINE_MULTIPLY">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">COMBINE_MULTIPLY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.COMBINE_MULTIPLY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.COMBINE_MAX">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">COMBINE_MAX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.COMBINE_MAX" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
@@ -288,7 +306,7 @@ Interactive Labs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.spawn_id_and_parent_with_relative_transform">
 <span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">spawn_id_and_parent_with_relative_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentClassID</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentActorNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentComponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.spawn_id_and_parent_with_relative_transform" title="Permalink to this definition"></a></dt>
-<dd><p>Spawns a new actor relative to an existing actor and creates an kinematic relationship.</p>
+<dd><p>Spawns a new actor relative to an existing actor and creates a kinematic relationship.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -318,7 +336,7 @@ Interactive Labs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.spawn_id_and_parent_with_relative_transform_degrees">
 <span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">spawn_id_and_parent_with_relative_transform_degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actorNumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentClassID</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentActorNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentComponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.spawn_id_and_parent_with_relative_transform_degrees" title="Permalink to this definition"></a></dt>
-<dd><p>Spawns a new actor relative to an existing actor and creates an kinematic relationship.</p>
+<dd><p>Spawns a new actor relative to an existing actor and creates a kinematic relationship.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -409,15 +427,20 @@ Interactive Labs.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.set_physics_properties">
-<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">set_physics_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linearDamping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angularDamping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enableDynamics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_basic_shape.html#QLabsBasicShape.set_physics_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.set_physics_properties" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">set_physics_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enableDynamics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linearDamping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angularDamping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">staticFriction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamicFriction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frictionCombineMode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">COMBINE_AVERAGE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restitution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restitutionCombineMode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">COMBINE_AVERAGE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/library_qlabs_basic_shape.html#QLabsBasicShape.set_physics_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.set_physics_properties" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the dynamic properties of the shape.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mass</strong> (<em>float</em>) – Sets the mass of the actor in kilograms.</p></li>
-<li><p><strong>linearDamping</strong> (<em>float</em>) – Sets the damping of the actor for linear motions.</p></li>
-<li><p><strong>angularDamping</strong> (<em>float</em>) – Sets the damping of the actor for angular motions.</p></li>
 <li><p><strong>enableDynamics</strong> (<em>boolean</em>) – Enable (True) or disable (False) the shape dynamics. A dynamic actor can be pushed with other static or dynamic actors.  A static actor will generate collisions, but will not be affected by interactions with other actors.</p></li>
+<li><p><strong>mass</strong> (<em>float</em>) – (Optional) Sets the mass of the actor in kilograms.</p></li>
+<li><p><strong>linearDamping</strong> (<em>float</em>) – (Optional) Sets the damping of the actor for linear motions.</p></li>
+<li><p><strong>angularDamping</strong> (<em>float</em>) – (Optional) Sets the damping of the actor for angular motions.</p></li>
+<li><p><strong>staticFriction</strong> (<em>float</em>) – (Optional) Sets the coefficient of friction when the actor is at rest. A value of 0.0 is frictionless.</p></li>
+<li><p><strong>dynamicFriction</strong> (<em>float</em>) – (Optional) Sets the coefficient of friction when the actor is moving relative to the surface it is on. A value of 0.0 is frictionless.</p></li>
+<li><p><strong>frictionCombineMode</strong> (<em>byte</em>) – (Optional) Defines how the friction between two surfaces with different coefficients should be calculated (see COMBINE constants).</p></li>
+<li><p><strong>restitution</strong> (<em>float</em>) – (Optional) The coefficient of restitution defines how plastic or elastic a collision is. A value of 0.0 is plastic and will absorb all energy. A value of 1.0 is elastic and will bounce forever. A value greater than 1.0 will add energy with each collision.</p></li>
+<li><p><strong>restitutionCombineMode</strong> (<em>byte</em>) – (Optional) Defines how the restitution between two surfaces with different coefficients should be calculated (see COMBINE constants).</p></li>
 <li><p><strong>waitForConfirmation</strong> (<em>boolean</em>) – (Optional) Wait for confirmation of the operation before proceeding. This makes the method a blocking operation.</p></li>
 </ul>
 </dd>
@@ -645,6 +668,107 @@ the actor with one of the spawn functions, you may need to manually set the acto
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.parent_with_relative_transform">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">parent_with_relative_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentClassID</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentActorNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentComponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.parent_with_relative_transform" title="Permalink to this definition"></a></dt>
+<dd><p>Parents one existing actor to another to create a kinematic relationship.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location</strong> (<em>float array</em><em>[</em><em>3</em><em>]</em>) – (Optional) An array of floats for x, y and z coordinates</p></li>
+<li><p><strong>rotation</strong> (<em>float array</em><em>[</em><em>3</em><em>]</em>) – (Optional) An array of floats for the roll, pitch, and yaw in radians</p></li>
+<li><p><strong>scale</strong> (<em>float array</em><em>[</em><em>3</em><em>]</em>) – (Optional) An array of floats for the scale in the x, y, and z directions. Scale values of 0.0 should not be used.</p></li>
+<li><p><strong>parentClassID</strong> (<em>uint32</em>) – See the ID variables in the respective library classes for the class identifier</p></li>
+<li><p><strong>parentActorNumber</strong> (<em>uint32</em>) – User defined unique identifier for the class actor in QLabs</p></li>
+<li><p><strong>parentComponent</strong> (<em>uint32</em>) – <cite>0</cite> for the origin of the parent actor, see the parent class for additional reference frame options</p></li>
+<li><p><strong>waitForConfirmation</strong> (<em>boolean</em>) – (Optional) Make this operation blocking until confirmation of the spawn has occurred.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>status</strong> - 0 if successful, 1 cannot find this actor, 2 cannot find the parent actor, 3 unknown error, -1 communications error</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.parent_with_relative_transform_degrees">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">parent_with_relative_transform_degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentClassID</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentActorNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentComponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.parent_with_relative_transform_degrees" title="Permalink to this definition"></a></dt>
+<dd><p>Parents one existing actor to another to create a kinematic relationship.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location</strong> (<em>float array</em><em>[</em><em>3</em><em>]</em>) – (Optional) An array of floats for x, y and z coordinates</p></li>
+<li><p><strong>rotation</strong> (<em>float array</em><em>[</em><em>3</em><em>]</em>) – (Optional) An array of floats for the roll, pitch, and yaw in degrees</p></li>
+<li><p><strong>scale</strong> (<em>float array</em><em>[</em><em>3</em><em>]</em>) – (Optional) An array of floats for the scale in the x, y, and z directions. Scale values of 0.0 should not be used.</p></li>
+<li><p><strong>parentClassID</strong> (<em>uint32</em>) – See the ID variables in the respective library classes for the class identifier</p></li>
+<li><p><strong>parentActorNumber</strong> (<em>uint32</em>) – User defined unique identifier for the class actor in QLabs</p></li>
+<li><p><strong>parentComponent</strong> (<em>uint32</em>) – <cite>0</cite> for the origin of the parent actor, see the parent class for additional reference frame options</p></li>
+<li><p><strong>waitForConfirmation</strong> (<em>boolean</em>) – (Optional) Make this operation blocking until confirmation of the spawn has occurred.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>status</strong> - 0 if successful, 1 cannot find this actor, 2 cannot find the parent actor, 3 unknown error, -1 communications error</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.parent_with_current_world_transform">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">parent_with_current_world_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parentClassID</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentActorNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentComponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.parent_with_current_world_transform" title="Permalink to this definition"></a></dt>
+<dd><p>Parents one existing actor to another to create a kinematic relationship while preserving the current world transform of the child actor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parentClassID</strong> (<em>uint32</em>) – See the ID variables in the respective library classes for the class identifier</p></li>
+<li><p><strong>parentActorNumber</strong> (<em>uint32</em>) – User defined unique identifier for the class actor in QLabs</p></li>
+<li><p><strong>parentComponent</strong> (<em>uint32</em>) – <cite>0</cite> for the origin of the parent actor, see the parent class for additional reference frame options</p></li>
+<li><p><strong>waitForConfirmation</strong> (<em>boolean</em>) – (Optional) Make this operation blocking until confirmation of the spawn has occurred.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>status</strong> - 0 if successful, 1 cannot find this actor, 2 cannot find the parent actor, 3 unknown error, -1 communications error</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_qlabs_basic_shape.QLabsBasicShape.parent_break">
+<span class="sig-prename descclassname"><span class="pre">QLabsBasicShape.</span></span><span class="sig-name descname"><span class="pre">parent_break</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waitForConfirmation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#library_qlabs_basic_shape.QLabsBasicShape.parent_break" title="Permalink to this definition"></a></dt>
+<dd><p>Breaks any relationship with a parent actor (if it exists) and preserves the current world transform</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>waitForConfirmation</strong> (<em>boolean</em>) – (Optional) Make this operation blocking until confirmation of the spawn has occurred.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>status</strong> - 0 if successful, 1 cannot find this actor, -1 communications error</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int32</p>
 </dd>
 </dl>
 </dd></dl>

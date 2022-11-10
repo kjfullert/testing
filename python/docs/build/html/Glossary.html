@@ -7,7 +7,6 @@
   <title>Glossary &mdash; Quanser&#39;s Self Driving Car Virtual Studio Documentation 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sphinx_collapse.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
@@ -44,8 +43,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Getting%20Started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="User%20Interface.html">User Interface</a></li>
@@ -81,7 +79,64 @@
   <section id="glossary">
 <h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline"></a></h1>
 <dl class="glossary simple">
-<dt id="term-Self-Driving-Car-Studio-SDCS">Self-Driving Car Studio (SDCS)<a class="headerlink" href="#term-Self-Driving-Car-Studio-SDCS" title="Permalink to this term"></a></dt><dd><p>The Self-Driving Car Studio is Quanser’s autonomous vehicle research and development platform.</p>
+<dt id="term-Actor">Actor<a class="headerlink" href="#term-Actor" title="Permalink to this term"></a></dt><dd><p>In QLabs, an actor is any object that can be placed in the Open Worlds such as a camera,
+person, QCar, road signage, etc. Each actor class has different capabilities.
+For a full list of actors, see the
+<a class="reference internal" href="Objects/index.html#python-actors-reference"><span class="std std-ref">Python Actors Reference</span></a> for more details in controlling these actors in Python.</p>
+</dd>
+<dt id="term-Actor-Function">Actor Function<a class="headerlink" href="#term-Actor-Function" title="Permalink to this term"></a></dt><dd><p>Each actor class has a series of functions that can be accessed with the container system
+using a fixed ID. The function ID’s are listed as constants in each of the actor classes.</p>
+</dd>
+<dt id="term-Actor-Number">Actor Number<a class="headerlink" href="#term-Actor-Number" title="Permalink to this term"></a></dt><dd><p>Each actor of a specific class must have a unique actor number assigned to it so it can
+be addressed for further functionality or requesting information.</p>
+</dd>
+<dt id="term-Ambient-Occlusion">Ambient Occlusion<a class="headerlink" href="#term-Ambient-Occlusion" title="Permalink to this term"></a></dt><dd><p>This is the darkening or shading that occurs in the corners of a room as it receives less
+direct and reflected light due to the proximity of another surface. This is a graphical
+feature used to increase realism.</p>
+</dd>
+<dt id="term-Bloom">Bloom<a class="headerlink" href="#term-Bloom" title="Permalink to this term"></a></dt><dd><p>The glow that appears around bright light sources. This is a graphical feature used to
+increase realism.</p>
+</dd>
+<dt id="term-Class-ID">Class ID<a class="headerlink" href="#term-Class-ID" title="Permalink to this term"></a></dt><dd><p>Each actor type has a fixed Class ID which is used in the container system.  See the actor
+definitions for the Class ID used.</p>
+</dd>
+<dt id="term-Configuration">Configuration<a class="headerlink" href="#term-Configuration" title="Permalink to this term"></a></dt><dd><p>Some actors have more than one 3D model or behavior that can set during spawning. For instance,
+the animal class has one configurations for each type of animal, but they all share the same
+functions of the animal class. See the configurations section under the Actors Reference
+to see all configurations a particular actor class.</p>
+</dd>
+<dt id="term-Connection-Points">Connection Points<a class="headerlink" href="#term-Connection-Points" title="Permalink to this term"></a></dt><dd><p>Connection Points are reference frames on an actor that other actors can be attached to.</p>
+</dd>
+<dt id="term-Container">Container<a class="headerlink" href="#term-Container" title="Permalink to this term"></a></dt><dd><p>The communications framework to QLabs addresses each actor in the scene within a container.
+Each container holds the container size, class ID, actor number, actor function and a
+variable-length payload that depends on the specific function called.</p>
+</dd>
+<dt id="term-CPS">CPS<a class="headerlink" href="#term-CPS" title="Permalink to this term"></a></dt><dd><p>Communication Per Second. A measurement of the number of communication packets the simulation
+is processing per second.  Note that a single packet make contain one or more container
+so the packet composition must be considered when evaluating the communication efficiency.</p>
+</dd>
+<dt id="term-FPS">FPS<a class="headerlink" href="#term-FPS" title="Permalink to this term"></a></dt><dd><p>Frames Per Second. This is an indication of your computer’s graphical performance. A minimum
+of 30 FPS will appear as a smooth animation.</p>
+</dd>
+<dt id="term-Open-World">Open World<a class="headerlink" href="#term-Open-World" title="Permalink to this term"></a></dt><dd><p>In QLabs, an open world is a virtual world or map where the user can move freely and create
+and place objects to create custom scenarios. There are several different Open Worlds
+available in QLabs for different types of products. Please
+<a class="reference external" href="https://www.quanser.com/contact/">contact</a> a Quanser representative to find out more.</p>
+</dd>
+<dt id="term-Packet">Packet<a class="headerlink" href="#term-Packet" title="Permalink to this term"></a></dt><dd><p>Communication from external scripts or models to QLabs is done with TCP/IP communications.
+This form of communications is packet-based which means the information is bundled into
+chunks of data with a known format to facilitate the transmission from your model to QLabs
+whether that be on the same PC or a computer on the other side of the world.  Each
+packet contains one or more “container” which further divides the data into messages
+for each actor.</p>
+</dd>
+<dt id="term-QCar">QCar<a class="headerlink" href="#term-QCar" title="Permalink to this term"></a></dt><dd><p>The Quanser Virtual QCar is a fully instrumented, dynamically accurate digital twin of the
+Quanser QCar system. It behaves the  same way as the physical hardware and can be measured
+and controlled using MATLAB/Simulink or Python development environments. It can enrich your
+lectures and activities in traditional labs, or bring credible, authentic, model-based lab
+experiences into your distance and online self-driving course. As with the physical QCar,
+the virtual system is a self-driving teaching and research platform complete with
+industrially relevant sensors such as LiDAR and RGB-D cameras.</p>
 </dd>
 <dt id="term-Quanser-Interactive-Labs-QLabs">Quanser Interactive Labs (QLabs)<a class="headerlink" href="#term-Quanser-Interactive-Labs-QLabs" title="Permalink to this term"></a></dt><dd><p>QLabs or Quanser Interactive Labs is the virtual twin for Quanser’s hardware products.
 Using Quanser Interactive Labs, you get a collection of virtual hardware-based laboratory
@@ -90,41 +145,38 @@ on Quanser physical systems and offers credible, academically appropriate experi
 desktops, laptops, or smart devices. See more on our
 <a class="reference external" href="https://www.quanser.com/digital/quanser-interactive-labs/">website</a>.</p>
 </dd>
-<dt id="term-QCar">QCar<a class="headerlink" href="#term-QCar" title="Permalink to this term"></a></dt><dd><p>The Quanser Virtual QCar is a fully instrumented, dynamically accurate digital twin of the
-Quanser QCar system. It behaves the  same way as the physical hardware and can be measured
-and controller using MATLAB/Simulink or Python development environments. It can enrich your
-lectures and activities in traditional labs, or bring credible, authentic model-based lab
-experiences into your distance and online self-driving course. Same as the physical QCar,
-the virtual system is a self-driving teaching and research platform complete with
-industrially relevant sensors such as LiDAR and RGB-D cameras.</p>
+<dt id="term-Reference-Frame">Reference Frame<a class="headerlink" href="#term-Reference-Frame" title="Permalink to this term"></a></dt><dd><p>Reference Frames are used to specify the relationship between a moving observer and the
+phenomenon under observation. For instance, a robot arm would typically have a reference
+frame at each joint where the transformation from one reference frame to the next is
+determined by the joint rotations and translations.</p>
 </dd>
-<dt id="term-Open-World">Open World<a class="headerlink" href="#term-Open-World" title="Permalink to this term"></a></dt><dd><p>In QLabs, an open world is a virtual world or map where the user can move freely and create
-and place objects to create custom scenarios. There are several different Open Worlds
-available in QLabs for different types of products. Please
-<a class="reference external" href="https://www.quanser.com/contact/">contact</a> a Quanser representative to find out more.</p>
+<dt id="term-Refraction">Refraction<a class="headerlink" href="#term-Refraction" title="Permalink to this term"></a></dt><dd><p>The deflection of light as it passes through one medium to another. Materials such as
+glass require reflection and refraction to accurately recreate it, but it has a high
+computational cost to accurately reproduce.</p>
 </dd>
-<dt id="term-Actor">Actor<a class="headerlink" href="#term-Actor" title="Permalink to this term"></a></dt><dd><p>In QLabs, an actor is any object that can be placed in the Open Worlds such as a camera,
-person, QCar, road signage, etc. Each actor class has different capabilities.
-For a full list of actors, see the
-<a class="reference internal" href="Objects/index.html#python-actors-reference"><span class="std std-ref">Python Actors Reference</span></a> for more details in controlling these actors in Python.</p>
+<dt id="term-Render">Render<a class="headerlink" href="#term-Render" title="Permalink to this term"></a></dt><dd><p>The process of drawing an image on the screen.</p>
+</dd>
+<dt id="term-Screen-Percentage-Scaling">Screen Percentage Scaling<a class="headerlink" href="#term-Screen-Percentage-Scaling" title="Permalink to this term"></a></dt><dd><p>Renders the image on the screen at a lower resolution than your monitor that scales the
+image up to fill the screen. This is a technique to improve rendering performance at
+the cost of making some details blurry in the scene.</p>
+</dd>
+<dt id="term-Self-Driving-Car-Studio-SDCS">Self-Driving Car Studio (SDCS)<a class="headerlink" href="#term-Self-Driving-Car-Studio-SDCS" title="Permalink to this term"></a></dt><dd><p>The Self-Driving Car Studio is Quanser’s autonomous vehicle research and development platform.</p>
 </dd>
 <dt id="term-Spawn">Spawn<a class="headerlink" href="#term-Spawn" title="Permalink to this term"></a></dt><dd><p>Creating a new instance of an actor class is called spawning.</p>
 </dd>
-<dt id="term-Configuration">Configuration<a class="headerlink" href="#term-Configuration" title="Permalink to this term"></a></dt><dd><p>Some actors have more then one 3D animations called configurations. For instance, in the animal
-class, there is different configurations for different animals. See the configurations section
-under the Actors Reference to see all configurations a particular actor class.</p>
+<dt id="term-Texel">Texel<a class="headerlink" href="#term-Texel" title="Permalink to this term"></a></dt><dd><p>A single pixel of a texture map.</p>
 </dd>
-<dt id="term-Connection-Points">Connection Points<a class="headerlink" href="#term-Connection-Points" title="Permalink to this term"></a></dt><dd><p>Connection Points are points on an actor that other actors can be attached to.</p>
+<dt id="term-Texture-Map">Texture Map<a class="headerlink" href="#term-Texture-Map" title="Permalink to this term"></a></dt><dd><p>A 2D image that has been wrapped onto a 3D object. This is object used to project a greater
+level of detail onto a 3D surface with a lower computational cost that recreating the same
+details with geometry.</p>
 </dd>
 <dt id="term-Widget">Widget<a class="headerlink" href="#term-Widget" title="Permalink to this term"></a></dt><dd><p>Widgets are a special class of highly performant actors. This allows thousands of dynamic
 widgets can be spawned in the Open World, but they have the restriction that widgets cannot
-be addressed after they have been spawned.</p>
+be addressed after they have been spawned. Widgets are typically used as objects to be picked
+up, transported, or interacted with.  All widgets simulate physics.</p>
 </dd>
-<dt id="term-Reference-Frame">Reference Frame<a class="headerlink" href="#term-Reference-Frame" title="Permalink to this term"></a></dt><dd><p>Reference Frames are used to specify the relationship between a moving observer and the
-phenomenon under observation.</p>
-</dd>
-<dt id="term-Workspace">Workspace<a class="headerlink" href="#term-Workspace" title="Permalink to this term"></a></dt><dd><p>A workspace in QLabs opens a specific virtual environment.  This environment could either be
-an open world or a virtual lab space.</p>
+<dt id="term-Workspace">Workspace<a class="headerlink" href="#term-Workspace" title="Permalink to this term"></a></dt><dd><p>A workspace in QLabs is a specific virtual environment or lab module.  This environment could either be
+an open world or a virtual lab space with a more focused purpose.</p>
 </dd>
 </dl>
 </section>
