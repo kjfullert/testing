@@ -6,6 +6,7 @@
   <title>library_qlabs_basic_shape &mdash; Quanser&#39;s Self Driving Car Virtual Studio Documentation 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx_collapse.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
@@ -95,17 +96,12 @@
     <span class="n">SHAPE_CUBE</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">SHAPE_CYLINDER</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">SHAPE_SPHERE</span> <span class="o">=</span> <span class="mi">2</span>
-
-    <span class="n">COMBINE_AVERAGE</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">COMBINE_MIN</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">COMBINE_MULTIPLY</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">COMBINE_MAX</span> <span class="o">=</span> <span class="mi">3</span>
        
     
     <span class="n">FCN_BASIC_SHAPE_SET_MATERIAL_PROPERTIES</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="n">FCN_BASIC_SHAPE_SET_MATERIAL_PROPERTIES_ACK</span> <span class="o">=</span> <span class="mi">11</span>
-    <span class="n">FCN_BASIC_SHAPE_SET_PHYSICS_PROPERTIES</span> <span class="o">=</span> <span class="mi">20</span>
-    <span class="n">FCN_BASIC_SHAPE_SET_PHYSICS_PROPERTIES_ACK</span> <span class="o">=</span> <span class="mi">21</span>
+    <span class="n">FCN_BASIC_SHAPE_SET_PHYSICS_PROPERTIES</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">FCN_BASIC_SHAPE_SET_PHYSICS_PROPERTIES_ACK</span> <span class="o">=</span> <span class="mi">13</span>
     <span class="n">FCN_BASIC_SHAPE_ENABLE_DYNAMICS</span> <span class="o">=</span> <span class="mi">14</span>
     <span class="n">FCN_BASIC_SHAPE_ENABLE_DYNAMICS_ACK</span> <span class="o">=</span> <span class="mi">15</span>
     <span class="n">FCN_BASIC_SHAPE_SET_TRANSFORM</span> <span class="o">=</span> <span class="mi">16</span>
@@ -242,29 +238,19 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>   </div>
 
-<div class="viewcode-block" id="QLabsBasicShape.set_physics_properties"><a class="viewcode-back" href="../Objects/basic_shapes.html#library_qlabs_basic_shape.QLabsBasicShape.set_physics_properties">[docs]</a>    <span class="k">def</span> <span class="nf">set_physics_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enableDynamics</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">linearDamping</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">angularDamping</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">staticFriction</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dynamicFriction</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">frictionCombineMode</span><span class="o">=</span><span class="n">COMBINE_AVERAGE</span><span class="p">,</span> <span class="n">restitution</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">restitutionCombineMode</span><span class="o">=</span><span class="n">COMBINE_AVERAGE</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="QLabsBasicShape.set_physics_properties"><a class="viewcode-back" href="../Objects/basic_shapes.html#library_qlabs_basic_shape.QLabsBasicShape.set_physics_properties">[docs]</a>    <span class="k">def</span> <span class="nf">set_physics_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">linearDamping</span><span class="p">,</span> <span class="n">angularDamping</span><span class="p">,</span> <span class="n">enableDynamics</span><span class="p">,</span> <span class="n">waitForConfirmation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the dynamic properties of the shape.</span>
 
+<span class="sd">        :param mass: Sets the mass of the actor in kilograms.</span>
+<span class="sd">        :param linearDamping: Sets the damping of the actor for linear motions.</span>
+<span class="sd">        :param angularDamping: Sets the damping of the actor for angular motions.</span>
 <span class="sd">        :param enableDynamics: Enable (True) or disable (False) the shape dynamics. A dynamic actor can be pushed with other static or dynamic actors.  A static actor will generate collisions, but will not be affected by interactions with other actors.</span>
-<span class="sd">        :param mass: (Optional) Sets the mass of the actor in kilograms.</span>
-<span class="sd">        :param linearDamping: (Optional) Sets the damping of the actor for linear motions.</span>
-<span class="sd">        :param angularDamping: (Optional) Sets the damping of the actor for angular motions.</span>
-<span class="sd">        :param staticFriction: (Optional) Sets the coefficient of friction when the actor is at rest. A value of 0.0 is frictionless.</span>
-<span class="sd">        :param dynamicFriction: (Optional) Sets the coefficient of friction when the actor is moving relative to the surface it is on. A value of 0.0 is frictionless.</span>
-<span class="sd">        :param frictionCombineMode: (Optional) Defines how the friction between two surfaces with different coefficients should be calculated (see COMBINE constants).</span>
-<span class="sd">        :param restitution: (Optional) The coefficient of restitution defines how plastic or elastic a collision is. A value of 0.0 is plastic and will absorb all energy. A value of 1.0 is elastic and will bounce forever. A value greater than 1.0 will add energy with each collision.</span>
-<span class="sd">        :param restitutionCombineMode: (Optional) Defines how the restitution between two surfaces with different coefficients should be calculated (see COMBINE constants).</span>
 <span class="sd">        :param waitForConfirmation: (Optional) Wait for confirmation of the operation before proceeding. This makes the method a blocking operation.</span>
-
-<span class="sd">        :type enableDynamics: boolean</span>
+<span class="sd">        </span>
 <span class="sd">        :type mass: float</span>
 <span class="sd">        :type linearDamping: float</span>
 <span class="sd">        :type angularDamping: float</span>
-<span class="sd">        :type staticFriction: float</span>
-<span class="sd">        :type dynamicFriction: float</span>
-<span class="sd">        :type frictionCombineMode: byte</span>
-<span class="sd">        :type restitution: float</span>
-<span class="sd">        :type restitutionCombineMode: byte</span>
+<span class="sd">        :type enableDynamics: boolean</span>
 <span class="sd">        :type waitForConfirmation: boolean</span>
 <span class="sd">        :return: True if successful, False otherwise</span>
 <span class="sd">        :rtype: boolean</span>
@@ -277,7 +263,7 @@
         <span class="n">c</span><span class="o">.</span><span class="n">classID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID_BASIC_SHAPE</span>
         <span class="n">c</span><span class="o">.</span><span class="n">actorNumber</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actorNumber</span>
         <span class="n">c</span><span class="o">.</span><span class="n">actorFunction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCN_BASIC_SHAPE_SET_PHYSICS_PROPERTIES</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;BfffffBfB&quot;</span><span class="p">,</span> <span class="n">enableDynamics</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">linearDamping</span><span class="p">,</span> <span class="n">angularDamping</span><span class="p">,</span> <span class="n">staticFriction</span><span class="p">,</span> <span class="n">dynamicFriction</span><span class="p">,</span> <span class="n">frictionCombineMode</span><span class="p">,</span> <span class="n">restitution</span><span class="p">,</span> <span class="n">restitutionCombineMode</span><span class="p">))</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&gt;fffB&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">linearDamping</span><span class="p">,</span> <span class="n">angularDamping</span><span class="p">,</span> <span class="n">enableDynamics</span><span class="p">))</span>
         <span class="n">c</span><span class="o">.</span><span class="n">containerSize</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">BASE_CONTAINER_SIZE</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
         
         <span class="k">if</span> <span class="n">waitForConfirmation</span><span class="p">:</span>
