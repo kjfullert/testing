@@ -77,4 +77,4 @@ html_logo = 'pictures/quanser_selfdrivingcarstudio.png'
 sphinx_tabs_disable_tab_closing = True
 
 autodoc_preserve_defaults = True
-autodoc_moc_imports = ['quanser']
+autodoc_mock_imports = ['quanser']
