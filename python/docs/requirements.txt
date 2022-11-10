@@ -1,6 +1,6 @@
 # Defining the exact version will make sure things don't break (eg pip install sphinx==4.5.0)
-https://github.com/quanser/testingWhl/blob/main/quanser_common-2022.10.19-py2.py3-none-any.whl?raw=true
-https://github.com/quanser/testingWhl/blob/main/quanser_communications-2022.10.19-py2.py3-none-any.whl?raw=true
+#https://github.com/quanser/testingWhl/blob/main/quanser_common-2022.10.19-py2.py3-none-any.whl?raw=true
+#https://github.com/quanser/testingWhl/blob/main/quanser_communications-2022.10.19-py2.py3-none-any.whl?raw=true
 sphinx==4.5.0
 sphinx-autobuild==0.7.1
 #sphinx_collapse==0.1.2
