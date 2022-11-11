@@ -25,7 +25,7 @@ Contributing
 ============
 We are always striving to improve our documentation.  
 You can help by submitting pull requests for fixes or issues for suggestions on our GitHub repository.  
-See our :ref:`Code Style`` page for more information about how to contribute and our coding practices.
+See our :ref:`Code Style` page for more information about how to contribute and our coding practices.
 
 ----------------------------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ Contents
 ========
 
 .. toctree::
-   
+
    Getting Started
    Glossary
    User Interface

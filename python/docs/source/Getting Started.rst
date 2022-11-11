@@ -7,17 +7,22 @@ Getting Started
 Installation / Set Up
 =====================
 
-#. Create an account on `Portal <https://portal.quanser.com/Accounts/Login?returnUrl=/>`__ with your school email.
+#. 
+    Create an account on `Portal <https://portal.quanser.com/Accounts/Login?returnUrl=/>`__ with your school email.
 
     .. tip:: Check the box "Remember Me" for QLabs to remember your account
 
-#. Download Quanser Interactive Lab on the `Portal <https://portal.quanser.com/Accounts/Login?returnUrl=/>`__
+#. 
+    Download Quanser Interactive Lab on the `Portal <https://portal.quanser.com/Accounts/Login?returnUrl=/>`__
 
     .. note:: All available content should be available to you on the main screen. If something is missing, try logging out and logging back in again.
 
-#. Scroll using a mouse wheel or the arrow keys on either side of the screen to the QCar studio.  
+#. 
+    Scroll using a mouse wheel or the arrow keys on either side of the screen to the QCar studio. 
+    Alternatively you can also right-click and drag left/right to scroll through available modules.
 
-#. Click on the QCar studio and select the workspace of choice.
+#. 
+    Click on the QCar studio and select the workspace of choice.
 
 Running a Python Script for QLabs SDCS
 ======================================
@@ -32,10 +37,18 @@ Prerequisites
 GitHub QLabs Libraries Download
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Download the common library off Github which will be needed in order to run the objects in your python script for QLabs `Virtual QCar Public Libraries <https://github.com/quanser/virtual_qcar_libraries>`__.
+Download the common library off Github which will be needed in order to run the objects in your python script for QLabs `Virtual QCar Libraries <https://github.com/quanser/virtual_qcar_libraries>`__.
+
+Download Python
+^^^^^^^^^^^^^^^
+
+If you don't already have python installed on your computer, you can download it from `here <https://Python.org/downloads/>`__.
+
+.. important:: Ensure that you check the box that says 'Add Python to Path' when installing python.
 
 Download OpenCV-Python
 ^^^^^^^^^^^^^^^^^^^^^^
+
 In the command terminal running as an admin (or in Linux running "sudo"), paste and run this code to install opencv on the computer.
 
 .. code-block:: python
@@ -53,12 +66,12 @@ In order to do this, navigate to your QUARC python folder.
 .. important:: Make sure the files in the QUARC python folder below have the same date as the date in the following code below before running it!
 
 .. tabs::
-    .. code-tab:: console Windows
+    .. code-tab:: console Windows - Command Prompt
 
-        cd C:\Program Files\Quanser\QUARC\python
+        cd %QUARC_DIR%\python
         python -m pip install --upgrade --find-links "%QUARC_DIR%\python" "%QUARC_DIR%\python\quanser_api-2022.4.29-py2.py3-none-any.whl"
     
-    .. code-tab:: console Linux
+    .. code-tab:: console Linux - Terminal
 
         cd /opt/quanser/python
         python3 -m pip install --upgrade --find-links /opt/quanser/python /opt/quanser/python/quanser_api-2022.4.29-py2.py3-none-any.whl
@@ -67,9 +80,10 @@ If you have trouble or for more information about this `click here <https://docs
 
 **At this point you should be ready to build and run a test script!**
 
-..The following test script will test your capabilities in a simple script to get you up and running.
+.. The following test script will test your capabilities in a simple script to get you up and running.
 
-..Tutorial - Getting Started
-..==========================
+.. Tutorial - Getting Started
+
+.. ==========================
 
 .. I think there should be a tutorial script to walk someone through a simple python file in here.

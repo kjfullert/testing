@@ -19,7 +19,7 @@ print(sys.path)
 
 # -- Project information -----------------------------------------------------
 
-project = "Quanser's Self Driving Car Virtual Studio Documentation"
+project = "Quanser's Virtual QCar Documentation"
 copyright = '2022, Quanser'
 author = 'Quanser'
 
@@ -53,7 +53,6 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
-
 
 # -- Options for HTML output -------------------------------------------------
 
