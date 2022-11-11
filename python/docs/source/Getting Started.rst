@@ -44,6 +44,8 @@ Download Python
 
 If you don't already have python installed on your computer, you can download it from `here <https://Python.org/downloads/>`__.
 
+We have currently tested compatibility with Python 3.
+
 .. important:: Ensure that you check the box that says 'Add Python to Path' when installing python.
 
 Download OpenCV-Python
@@ -66,13 +68,15 @@ In order to do this, navigate to your QUARC python folder.
 .. important:: Make sure the files in the QUARC python folder below have the same date as the date in the following code below before running it!
 
 .. tabs::
-    .. code-tab:: console Windows - Command Prompt
+    .. code-tab:: console Windows
 
+        # Type this into your Windows Command Prompt
         cd %QUARC_DIR%\python
         python -m pip install --upgrade --find-links "%QUARC_DIR%\python" "%QUARC_DIR%\python\quanser_api-2022.4.29-py2.py3-none-any.whl"
     
-    .. code-tab:: console Linux - Terminal
+    .. code-tab:: console Linux
 
+        # Type this into your Linux Terminal
         cd /opt/quanser/python
         python3 -m pip install --upgrade --find-links /opt/quanser/python /opt/quanser/python/quanser_api-2022.4.29-py2.py3-none-any.whl
 
